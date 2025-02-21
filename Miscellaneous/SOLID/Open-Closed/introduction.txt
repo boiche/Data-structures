@@ -1,0 +1,3 @@
+﻿Open-Closed Principle
+
+Requires classes to be open for extension and closed to modification.

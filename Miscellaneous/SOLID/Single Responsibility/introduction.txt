@@ -1,0 +1,6 @@
+﻿Single Responsibility Principle (SRP)
+
+Each class must be responsible for single functionality.
+- Provides readaility
+- When a change occurs in the class is known what kind of change it is
+- Less merge conflicts occur
