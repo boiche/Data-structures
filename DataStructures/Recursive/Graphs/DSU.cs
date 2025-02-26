@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using DataStructures.Recursive.Graphs.Interfaces;
 
 namespace DataStructures.Recursive.Graphs
@@ -10,8 +12,16 @@ namespace DataStructures.Recursive.Graphs
     public class DSU<T> : BaseGraph<T>
     {
         private new Dictionary<T, T> _source;
+        /// <summary>
+        /// Count of distinct elements in all sets
+        /// </summary>
+        public new int Count { get => _source.Count; }
+        /// <summary>
+        /// Count of distinct sets
+        /// </summary>
+        public int SetCount { get => _source.Count(x => x.Value.Equals(x.Key)); }
 
-        public DSU(ISet<T> values)
+        public DSU(ISet<T> values) : base()
         {
             _source = new Dictionary<T, T>();
             foreach (var item in values)
@@ -28,13 +38,12 @@ namespace DataStructures.Recursive.Graphs
         /// <exception cref="KeyNotFoundException"></exception>
         public T Find(T key)
         {
-            if (!_source.TryGetValue(key, out T parent))
-                throw new KeyNotFoundException($"Given element not found in the initial data.Mind call {nameof(Assign)}");
+            T parent = _source.GetValueOrDefault(key, key);               
 
             if (!parent.Equals(key))
             {
                 parent = Find(parent);
-                _source[key] = parent;
+                _source[key] = parent;                
             }
 
             return parent;
@@ -47,6 +56,9 @@ namespace DataStructures.Recursive.Graphs
         /// <param name="key"></param>
         public void Assign(T item, T key)
         {
+            if (!_source.ContainsKey(item))
+                throw new KeyNotFoundException();    
+                
             _source[item] = key;
         }
 

@@ -15,7 +15,7 @@ namespace DataStructures.Recursive.Trees.Interfaces
         protected IEnumerable<object> temp_source;
         
         public abstract ITreeNode<T> Root { get; }
-        public int Count { get; set; }
+        public int Count { get; protected set; }
 
         public BaseTree(IEnumerable<T> source)
         {

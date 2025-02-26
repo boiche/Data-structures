@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using DataStructures.Recursive.Graphs;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
 namespace DataStructures.Tests
@@ -72,6 +73,60 @@ namespace DataStructures.Tests
             }
 
             Assert.AreEqual("makkek", new string(result));
+        }
+
+        [TestMethod]
+        public void LeetCode_547_Works()
+        {
+            int[][] input = [[1, 1, 1, 0, 1, 1, 1, 0, 0, 0], [1, 1, 0, 0, 0, 0, 0, 1, 0, 0], [1, 0, 1, 1, 0, 0, 0, 0, 0, 0], [0, 0, 0, 1, 1, 0, 0, 0, 1, 0], [1, 0, 0, 1, 1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 1, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0, 1, 0, 1, 0], [0, 1, 0, 0, 0, 0, 0, 1, 0, 1], [0, 0, 0, 1, 0, 0, 1, 0, 1, 1], [0, 0, 0, 0, 0, 0, 0, 1, 1, 1]];
+            HashSet<int> pairs = new();
+            for (int i = 0; i < input.Length; i++)
+            {
+                pairs.Add(i);
+            }
+
+            DSU<int> dsu = new(pairs);
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                for (int j = 0; j < input[i].Length; j++)
+                {
+                    if (i == j)
+                        continue;
+
+                    if (input[i][j] == 1)
+                        dsu.Union(j, i);
+                }
+            }
+
+            Assert.AreEqual(1, dsu.SetCount);
+        }
+
+        [TestMethod]
+        public void LeetCode_547_1_Works()
+        {
+            int[][] input = [[1, 1, 1, 0, 1, 1, 1, 0, 0, 0], [1, 1, 0, 0, 0, 0, 0, 1, 0, 0], [1, 0, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 1, 1, 0, 0, 0, 1, 0], [1, 0, 0, 1, 1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 1, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0, 1, 0, 1, 0], [0, 1, 0, 0, 0, 0, 0, 1, 0, 1], [0, 0, 0, 1, 0, 0, 1, 0, 1, 1], [0, 0, 0, 0, 0, 0, 0, 1, 1, 1]];
+            HashSet<int> pairs = new();
+            for (int i = 0; i < input.Length; i++)
+            {
+                pairs.Add(i);
+            }
+
+            DSU<int> dsu = new(pairs);
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                for (int j = 0; j < input[i].Length; j++)
+                {
+                    if (i == j)
+                        continue;
+
+                    if (input[i][j] == 1)
+                        dsu.Union(j, i);
+                }
+            }
+
+            Assert.AreEqual(1, dsu.SetCount);
         }
     }
 }
