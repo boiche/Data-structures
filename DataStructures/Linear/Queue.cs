@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DataStructures.Linear
 {
@@ -88,6 +86,11 @@ namespace DataStructures.Linear
         {
             elements = Array.Empty<T>();
             index = 0;
+        }
+
+        public override string ToString()
+        {
+            return $"{nameof(Count)} = {Count}";
         }
     }
 }

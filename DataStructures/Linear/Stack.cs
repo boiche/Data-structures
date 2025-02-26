@@ -84,5 +84,10 @@ namespace DataStructures.Linear
             this.elements = new T[elements.Length];
             index = 0;
         }
+
+        public override string ToString()
+        {
+            return $"{nameof(Count)} = {Count}";
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿using DataStructures.Recursive.Trees;
+﻿using DataStructures.Trees;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DataStructures.Tests.Trees

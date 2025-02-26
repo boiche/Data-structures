@@ -1,4 +1,4 @@
-﻿using DataStructures.Recursive.Tables.HashTable;
+﻿using DataStructures.Tables.HashTable;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Drawing;
