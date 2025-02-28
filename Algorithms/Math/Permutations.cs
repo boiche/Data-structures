@@ -13,7 +13,7 @@ namespace Algorithms.Math
         /// </summary>
         /// <param name="from">Start number</param>
         /// <param name="to">End number</param>
-        /// <returns>All permutations with numbers <paramref name="from"/> <paramref name="to"/></returns>
+        /// <returns>All permutations with numbers <paramref name="from"/> <paramref name="to"/> inclusive</returns>
         /// <exception cref="ArgumentException"><paramref name="from"/> is greater or equals to <paramref name="to"/></exception>
         public static IEnumerable<IEnumerable<int>> Generate(int from, int to)
         {

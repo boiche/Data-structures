@@ -13,4 +13,10 @@
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Recursive\**" />
+    <EmbeddedResource Remove="Recursive\**" />
+    <None Remove="Recursive\**" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,4 @@
-﻿using DataStructures.Nodes;
+﻿using DataStructures.Linear.LinkedLists.DoubleLinkedList.Nodes;
 using System;
 using System.Collections;
 using System.Collections.Generic;

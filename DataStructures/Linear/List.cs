@@ -94,5 +94,10 @@ namespace DataStructures.Linear
         {
             return GetEnumerator();
         }
+
+        public override string ToString()
+        {
+            return $"{nameof(Count)} = {Count}";
+        }
     }
 }
