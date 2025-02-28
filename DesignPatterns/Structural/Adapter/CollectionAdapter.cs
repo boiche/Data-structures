@@ -2,16 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Reflection.Emit;
 
 namespace DesignPatterns.Structural.Adapter
 {
     public static class CollectionAdapter
     {
-        // Queue, Stack and Dictionary don't implement ICollection<T>. This class provides a mechanism to adapt an ICollection<T> object to these types
-
-        // Not the best example, because List already implements ICollection<T>
-        public static List<T> GetList<T>(this ICollection<T> collection)
+        public static List<T> GetList<T>(this IEnumerable<T> collection)
         {
             List<T> list = new List<T>();            
             
@@ -23,7 +19,7 @@ namespace DesignPatterns.Structural.Adapter
 
             return list;
         }
-        public static Queue<T> GetQueue<T>(this ICollection<T> collection)
+        public static Queue<T> GetQueue<T>(this IEnumerable<T> collection)
         {
             Queue<T> queue = new Queue<T>();
             var enumerator = collection.GetEnumerator();
@@ -34,7 +30,7 @@ namespace DesignPatterns.Structural.Adapter
 
             return queue;
         }
-        public static Stack<T> GetStack<T>(this ICollection<T> collection)
+        public static Stack<T> GetStack<T>(this IEnumerable<T> collection)
         {
             Stack<T> stack = new Stack<T>();
 
@@ -46,7 +42,7 @@ namespace DesignPatterns.Structural.Adapter
 
             return stack;
         }
-        public static Dictionary<T, V> GetDictionaryWithValues<T, V>(this ICollection<V> collection)
+        public static Dictionary<T, V> GetDictionaryWithValues<T, V>(this IEnumerable<V> collection)
         {
             Dictionary<T, V> dictionary = new Dictionary<T, V>();
 
@@ -63,7 +59,7 @@ namespace DesignPatterns.Structural.Adapter
 
             return dictionary;
         }
-        public static Dictionary<T, V> GetDictionaryWithKeys<T, V>(this ICollection<T> collection)
+        public static Dictionary<T, V> GetDictionaryWithKeys<T, V>(this IEnumerable<T> collection)
         {
             Dictionary<T, V> dictionary = new Dictionary<T, V>();
 

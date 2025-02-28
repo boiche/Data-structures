@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DesignPatterns.Tests.Structural.Adapter
 {
@@ -16,24 +13,26 @@ namespace DesignPatterns.Tests.Structural.Adapter
             "Operation",
             "Permutation"
         };
-
-        ICollection<string> _queue = new Queue<string>()
-        {
+        static List<string> queueData = 
+        [
             "Audi",
             "Saab",
             "Honda",
             "Maserati",
             "Suzuki"
-        };
-
-        ICollection<string> _stack = new Stack<string>()
-        {
+        ];
+        static List<string> stackData =
+        [
             "MAN",
             "Volvo",
             "DAF",
             "Renault",
             "Scania"
-        };
+        ];
+
+        IEnumerable<string> _queue = new Queue<string>(queueData);
+
+        IEnumerable<string> _stack = new Stack<string>(stackData);
 
         Dictionary<Guid, string> _dictionary = new Dictionary<Guid, string>()
         {

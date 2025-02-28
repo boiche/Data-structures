@@ -3,9 +3,6 @@ using DesignPatterns.Creational.Builder.Phones;
 
 namespace DesignPatterns.Creational.Builder
 {
-    //for complexity purposes of the example
-    //the build methods are much more static than usual.
-    //More dynamic logic is supposed to be implemented in each build method
     public class SamsungPhoneBuilder : IPhoneBuilder<Phone>
     {
         private readonly Phone _phone = new();
