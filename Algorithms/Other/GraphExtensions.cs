@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DataStructures.Graphs
+namespace Algorithms.Other
 {
-    public static class Extensions
+    public static partial class GraphExtensions
     {
         private static readonly (int row, int col)[] directions = [(1, 0), (-1, 0), (0, 1), (0, -1)];
         private static int index = 0;
@@ -61,8 +61,35 @@ namespace DataStructures.Graphs
         {
             Reset();
 
-            throw new NotImplementedException();
-        }
+            rows = source.Length;
+            cols = source[0].Length;
+
+            result = new int[rows * cols];
+            bool[,] visited = new bool[rows, cols];
+            Queue<MatrixIndex> stack = new();
+            stack.Enqueue(new(0, 0));
+
+            while (stack.Count > 0)
+            {
+                var current = stack.Dequeue();
+
+                for (int i = 0; i < directions.Length; i++)
+                {
+                    MatrixIndex next = new(current.row + directions[i].row, current.col + directions[i].col);
+                    if (IsInBounds(source, next) && !visited[next.row, next.col])
+                        stack.Enqueue(next);
+                }
+
+                if (!visited[current.row, current.col])
+                {
+                    result[index++] = source[current.row][current.col];
+                    visited[current.row, current.col] = true;
+                }
+            }
+
+            return result;
+        }        
+        
         private static int[] DFS_Recursive(MatrixIndex current, int[][] source, bool[,] visited)
         {
             if (!IsInBounds(source, current) || visited[current.row, current.col])
@@ -107,7 +134,7 @@ namespace DataStructures.Graphs
         }
     }
 
-    public struct MatrixIndex(int row, int col)
+    internal struct MatrixIndex(int row, int col)
     {
         public readonly int row = row;
         public readonly int col = col;

@@ -1,7 +1,7 @@
-﻿using DataStructures.Graphs;
+﻿using Algorithms.Other;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace DataStructures.Tests
+namespace Algorithms.Tests
 {
     [TestClass]
     public class GraphExtensionsTests
