@@ -1,7 +1,7 @@
 ﻿using Algorithms.Other;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Algorithms.Tests
+namespace Algorithms.Tests.Other
 {
     [TestClass]
     public class GraphExtensionsTests
