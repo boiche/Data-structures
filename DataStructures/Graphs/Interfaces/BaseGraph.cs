@@ -5,6 +5,6 @@ namespace DataStructures.Graphs.Interfaces
     public abstract class BaseGraph<T> : IGraph<T>
     {
         protected IEnumerable<T> _source;
-        public int Count { get; }
+        public virtual int Count { get; }
     }
 }
