@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Algorithms.Other
+namespace Algorithms.Other.GraphExtensions
 {
     public static partial class GraphExtensions
     {
