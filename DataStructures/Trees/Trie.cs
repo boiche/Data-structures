@@ -1,5 +1,6 @@
 ﻿using DataStructures.Trees.Interfaces;
 using DataStructures.Trees.Nodes;
+using DataStructures.Trees.Nodes.Interfaces;
 using System.Collections.Generic;
 
 namespace DataStructures.Trees
@@ -7,13 +8,13 @@ namespace DataStructures.Trees
     /// <summary>
     /// Stores collection of <see cref="string"/> in common-prefix tree-like structure
     /// </summary>
-    public class Trie : BaseTree<int>
+    public class Trie : BaseTree<int>, ISingleRootTree<TrieNode>
     {
-        private TrieNode _root = new TrieNode();
+        private readonly TrieNode _root = new TrieNode();
         /// <summary>
         /// The default root node. This node doesn't store data for the values of the tree
         /// </summary>
-        public override TrieNode Root => _root;
+        public TrieNode Root => _root;
 
         public Trie() : base(new List<int>()) { }        
         public Trie(List<string> source) : base(source) 

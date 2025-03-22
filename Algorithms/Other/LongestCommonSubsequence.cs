@@ -5,8 +5,6 @@ namespace Algorithms.Other
 {
     public class LongestCommonSubsequence(string first, string second)
     {
-        private StringBuilder resultBuilder;
-
         /// <summary>
         /// Time: O(m * n * Min(m,n)) <para></para> Space: O(1)
         /// </summary>

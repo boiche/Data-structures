@@ -11,7 +11,7 @@ namespace DataStructures.Recursive.Enumerators.BinaryTree
     /// Implementation of Inorder traversal <c>(Left-Root-Right)</c>. Applicable for <see cref="IBinaryTreeNode{T}"/> 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    internal class InorderTraversor<T> : IEnumerator<T> where T : IEquatable<T>, IComparable<T>
+    internal class InorderTraversor<T> : IEnumerator<T>
     {
         private readonly IBinaryTreeNode<T> _root;
         private IBinaryTreeNode<T> _current;

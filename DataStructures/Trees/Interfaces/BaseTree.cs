@@ -5,21 +5,21 @@ using System.Collections.Generic;
 
 namespace DataStructures.Trees.Interfaces
 {
-    public abstract class BaseTree<T> : IEnumerable<T> where T : IEquatable<T>, IComparable<T>
+    public abstract class BaseTree<T> : IEnumerable<T>
     {
-        protected IEnumerator<T> traversor;
-        protected IEnumerable<T> source;
+        protected IEnumerator<T> _traversor;
+        protected IEnumerable<T> _source;
         /// <summary>
         /// Contains elements that don't match <see cref="T"/>
         /// </summary>
         protected IEnumerable<object> temp_source;
         
-        public abstract ITreeNode<T> Root { get; }
-        public int Count { get; set; }
+        
+        public int Count { get; protected set; }
 
         public BaseTree(IEnumerable<T> source)
         {
-            this.source = source;
+            this._source = source;
         }
         public BaseTree(IEnumerable<object> source)
         {
@@ -28,11 +28,11 @@ namespace DataStructures.Trees.Interfaces
 
         public IEnumerator<T> GetEnumerator()
         {
-            return traversor;
+            return _traversor;
         }
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return traversor;
+            return _traversor;
         }
         /// <summary>
         /// Creates tree's nodes and links them
