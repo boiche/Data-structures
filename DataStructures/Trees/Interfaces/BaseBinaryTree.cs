@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DataStructures.Trees.Interfaces
 {
-    public abstract class BaseBinaryTree<T> : BaseTree<T> where T : IEquatable<T>, IComparable<T>
+    public abstract class BaseBinaryTree<T> : BaseTree<T>, ISingleRootTree<IBinaryTreeNode<T>>
     {
         protected BaseBinaryTree(IEnumerable<T> source, TreeOptions options) : base(source) 
         {
@@ -17,7 +17,7 @@ namespace DataStructures.Trees.Interfaces
         protected IBinaryTreeNode<T> current;
         protected IBinaryTreeNode<T> previous;
         protected IBinaryTreeNode<T> root;
-        public override IBinaryTreeNode<T> Root { get => root; }
+        public IBinaryTreeNode<T> Root { get => root; }
         public abstract IBinaryTreeNode<T> Find(T item);
         public abstract void Add(T item);
         public abstract bool Remove(T item);
@@ -25,7 +25,7 @@ namespace DataStructures.Trees.Interfaces
         protected override void BuildTree()
         {
             BinaryTreeNode<T> treeNode;
-            IEnumerator<T> enumerator = source.GetEnumerator();
+            IEnumerator<T> enumerator = _source.GetEnumerator();
             if (!enumerator.MoveNext())
             {
                 treeNode = new BinaryTreeNode<T>(default);
@@ -132,16 +132,16 @@ namespace DataStructures.Trees.Interfaces
             switch (options.Traverse)
             {
                 case Traverse.Preorder:
-                    traversor = new PreorderTraversor<T>(root);
+                    _traversor = new PreorderTraversor<T>(root);
                     break;
                 case Traverse.Postorder:
-                    traversor = new PostorderTraversor<T>(root);
+                    _traversor = new PostorderTraversor<T>(root);
                     break;
                 case Traverse.Inorder:
-                    traversor = new InorderTraversor<T>(root);
+                    _traversor = new InorderTraversor<T>(root);
                     break;
                 case Traverse.LevelOrder:
-                    traversor = new LevelOrderTraversor<T>(root);
+                    _traversor = new LevelOrderTraversor<T>(root);
                     break;
             }
         }

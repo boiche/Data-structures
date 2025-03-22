@@ -11,7 +11,7 @@ namespace DataStructures.Trees.BinaryTrees
     {
         public BinarySearchTree(List<T> source, TreeOptions options) : base(source, options)
         {
-            this.source = source.OrderBy(x => x).ToList();
+            this._source = source.OrderBy(x => x).ToList();
             BuildTree();    
             SetTraversor();
             Count = source.Count;

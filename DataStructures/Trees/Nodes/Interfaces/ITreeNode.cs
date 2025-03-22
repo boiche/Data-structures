@@ -7,7 +7,7 @@ namespace DataStructures.Trees.Nodes.Interfaces
     /// Implementation of a tree node
     /// </summary>
     /// <typeparam name="T">Node's value</typeparam>
-    public interface ITreeNode<T>
+    public interface ITreeNode<T> : ITreeNode
     {
         /// <summary>
         /// Stored data of current node
@@ -21,5 +21,9 @@ namespace DataStructures.Trees.Nodes.Interfaces
         /// Indicates that current node has no children
         /// </summary>
         public bool IsLeaf { get; }
+    }
+
+    public interface ITreeNode
+    {
     }
 }

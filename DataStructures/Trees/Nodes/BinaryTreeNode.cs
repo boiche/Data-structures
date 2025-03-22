@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DataStructures.Trees.Nodes
 {
-    public class BinaryTreeNode<T> : TreeNode<T>, IBinaryTreeNode<T>, IComparable<T> where T : IEquatable<T>, IComparable<T>
+    public class BinaryTreeNode<T> : TreeNode<T>, IBinaryTreeNode<T>
     {
         public IBinaryTreeNode<T> LeftNode { get; set; }
         public IBinaryTreeNode<T> RightNode { get; set; }
@@ -14,11 +14,6 @@ namespace DataStructures.Trees.Nodes
         {
             LeftNode = null;
             RightNode = null;
-        }
-
-        public int CompareTo(T other)
-        {
-            return Comparer<T>.Default.Compare(Value, other);
         }
     }
 }
