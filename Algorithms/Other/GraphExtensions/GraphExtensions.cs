@@ -6,7 +6,7 @@ namespace Algorithms.Other.GraphExtensions
 {
     public static partial class GraphExtensions
     {
-        private static readonly (int row, int col)[] directions = [(1, 0), (-1, 0), (0, 1), (0, -1)];
+        private static readonly MatrixIndex[] directions = [new(1, 0), new(-1, 0), new(0, 1), new(0, -1)];
         private static int index = 0;
         private static int[] result;
         private static int rows;
@@ -34,7 +34,7 @@ namespace Algorithms.Other.GraphExtensions
 
             result = new int[rows * cols];
             bool[,] visited = new bool[rows, cols];
-            Stack<MatrixIndex> stack = new();
+            DataStructures.Linear.Stack<MatrixIndex> stack = new();
             stack.Push(new(0, 0));
 
             while (stack.Count > 0)
@@ -66,18 +66,18 @@ namespace Algorithms.Other.GraphExtensions
 
             result = new int[rows * cols];
             bool[,] visited = new bool[rows, cols];
-            Queue<MatrixIndex> stack = new();
-            stack.Enqueue(new(0, 0));
+            DataStructures.Linear.Queue<MatrixIndex> queue = new();
+            queue.Enqueue(new(0, 0));
 
-            while (stack.Count > 0)
+            while (queue.Count > 0)
             {
-                var current = stack.Dequeue();
+                var current = queue.Dequeue();
 
                 for (int i = 0; i < directions.Length; i++)
                 {
                     MatrixIndex next = new(current.row + directions[i].row, current.col + directions[i].col);
                     if (IsInBounds(source, next) && !visited[next.row, next.col])
-                        stack.Enqueue(next);
+                        queue.Enqueue(next);
                 }
 
                 if (!visited[current.row, current.col])
