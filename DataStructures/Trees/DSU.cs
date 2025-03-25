@@ -15,6 +15,10 @@ namespace DataStructures.Trees
         public enum DSUOptions
         {
             /// <summary>
+            /// Applies neither path compression nor union by rank
+            /// </summary>
+            None,
+            /// <summary>
             /// Applies path compression for <see cref="Find(T)"/>
             /// </summary>
             PathCompression,
@@ -24,22 +28,22 @@ namespace DataStructures.Trees
             UnionByRank
         }
 
-        private new Dictionary<T, T> _source;
+        private Dictionary<T, T> _sets;
         private Dictionary<T, int> _ranks;
         private DSUOptions _options;
+        private int _setCount;
+
+        public int Sets { get => _setCount; }
 
         public DSU(ISet<T> values, DSUOptions options) : base(values)
         {
-            _source = [];
+            _sets = [];
             _ranks = [];
             _options = options;
+            _setCount = values.Count;
             Count = values.Count;
 
-            foreach (var item in values)
-            {
-                _source.Add(item, item);
-                _ranks.Add(item, 0);
-            }
+            BuildTree();
         }
 
         /// <summary>
@@ -50,7 +54,7 @@ namespace DataStructures.Trees
         /// <exception cref="KeyNotFoundException"></exception>
         public T Find(T key)
         {
-            if (!_source.TryGetValue(key, out T parent))
+            if (!_sets.TryGetValue(key, out T parent))
                 throw new KeyNotFoundException($"Given element not found in the initial data. Mind call {nameof(Assign)}");
 
             if (_options == DSUOptions.PathCompression)
@@ -58,15 +62,15 @@ namespace DataStructures.Trees
                 if (!parent.Equals(key))
                 {
                     parent = Find(parent);
-                    _source[key] = parent;
+                    _sets[key] = parent;
                 }
             }
             else
             {
-                if (_source[key].Equals(key))
+                if (_sets[key].Equals(key))
                     parent = key;
                 else
-                    parent = Find(_source[key]);
+                    parent = Find(_sets[key]);
             }
 
             return parent;
@@ -80,7 +84,7 @@ namespace DataStructures.Trees
         public void Assign(T item, T key)
         {
             Count++;
-            _source[item] = key;
+            _sets[item] = key;
         }
 
         /// <summary>
@@ -101,24 +105,35 @@ namespace DataStructures.Trees
                 int comparison = _ranks[leftRoot].CompareTo(_ranks[rightRoot]);
 
                 if (comparison == 1)
-                    _source[leftRoot] = rightRoot;
+                    _sets[rightRoot] = leftRoot;
                 else if (comparison == -1)
-                    _source[rightRoot] = leftRoot;
+                    _sets[leftRoot] = rightRoot;
                 else
                 {
-                    _source[leftRoot] = rightRoot;
-                    _ranks[leftRoot] = _ranks[rightRoot] + 1;
+                    _sets[leftRoot] = rightRoot;
+                    _ranks[rightRoot]++;
                 }
+
+                _setCount--;
             }
             else
             {
-                _source[Find(item1)] = Find(item2);
+                var left = Find(item1);
+                var right = Find(item2);
+                _sets[left] = right;
+
+                if (!left.Equals(right))
+                    _setCount--;
             }
         }
 
         protected override void BuildTree()
         {
-            throw new System.NotImplementedException();
+            foreach (var item in _source)
+            {
+                _sets.Add(item, item);
+                _ranks.Add(item, 0);
+            }
         }
     }
 }

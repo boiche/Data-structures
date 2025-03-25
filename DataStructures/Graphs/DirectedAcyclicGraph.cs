@@ -9,12 +9,12 @@ namespace DataStructures.Graphs
     /// <summary>
     /// Graph that supports single direction between nodes and no cycles
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public class DirectedAcyclicGraph<T> : BaseGraph<T>
+    /// <typeparam name="T">Type of node</typeparam>
+    /// <typeparam name="V">Type of node's value</typeparam>
+    public class DirectedAcyclicGraph<T, V> : BaseGraph<T, V> where T : INode<V>
     {
-        private new Dictionary<T, INode<T>> _source;        
-        public override int Count { get => _source.Count; }
-        public INode<T> this[T node]
+        private new Dictionary<V, INode<V>> _source;        
+        public INode<V> this[V node]
         {
             get { return _source[node]; }
         }
@@ -29,14 +29,28 @@ namespace DataStructures.Graphs
         /// </summary>
         /// <param name="node"></param>
         /// <exception cref="InvalidOperationException"></exception>
-        public void CreateNode(T node)
+        public void CreateNode(V nodeValue)
+        {
+            ArgumentNullException.ThrowIfNull(nodeValue);
+
+            if (_source.ContainsKey(nodeValue))
+                throw new InvalidOperationException("Node with the same value exists");
+
+            T newNode = (T)Activator.CreateInstance(typeof(T), [nodeValue]);
+
+            _source.Add(nodeValue, newNode);
+            Nodes.Add(newNode);
+        }
+
+        public override void CreateNode(T node)
         {
             ArgumentNullException.ThrowIfNull(node);
 
-            if (_source.ContainsKey(node))
+            if (_source.ContainsKey(node.Value))
                 throw new InvalidOperationException("Node with the same value exists");
 
-            _source.Add(node, new Node<T>(node));
+            _source.Add(node.Value, new Node<V>(node.Value));
+            Nodes.Add(node);
         }
 
         /// <summary>
@@ -45,24 +59,60 @@ namespace DataStructures.Graphs
         /// <param name="node"></param>
         /// <param name="newNode"></param>
         /// <exception cref="KeyNotFoundException"></exception>
-        public void Link(T node, T newNode)
+        public override void LinkNode(T node, T newNode)
         {
             ArgumentNullException.ThrowIfNull(node);
             ArgumentNullException.ThrowIfNull(newNode);
 
-            if (!_source.TryGetValue(node, out INode<T> value))
+            if (!_source.TryGetValue(node.Value, out INode<V> value))
                 throw new KeyNotFoundException();
 
             try
             {
-                value.Children.Add(newNode);
-                _source.TryAdd(newNode, new Node<T>(newNode));
+                value.Children.Add(newNode.Value);
+                if (_source.TryAdd(newNode.Value, new Node<V>(newNode.Value)))
+                    Nodes.Add(newNode);
+
                 TopologicalSort();
             }
             catch (Exception)
             {
-                value.Children.Remove(newNode);
-                _source.Remove(newNode);
+                value.Children.Remove(newNode.Value);
+                _source.Remove(newNode.Value);
+                Nodes.Remove(newNode);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Links two nodes within the graph. If <paramref name="newNodeValue"/> is missing, it will be created
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="newNode"></param>
+        /// <exception cref="KeyNotFoundException"></exception>
+        public void LinkNode(V nodeValue, V newNodeValue)
+        {
+            ArgumentNullException.ThrowIfNull(nodeValue);
+            ArgumentNullException.ThrowIfNull(newNodeValue);
+
+            if (!_source.TryGetValue(nodeValue, out INode<V> value))
+                throw new KeyNotFoundException();
+
+            T newNode = (T)Activator.CreateInstance(typeof(T), [newNodeValue]);
+
+            try
+            {
+                value.Children.Add(newNodeValue);                
+                if (_source.TryAdd(newNodeValue, newNode))
+                    Nodes.Add(newNode);
+
+                TopologicalSort();
+            }
+            catch (Exception)
+            {
+                value.Children.Remove(newNode.Value);
+                _source.Remove(newNode.Value);
+                Nodes.Remove(newNode);
                 throw;
             }
         }
@@ -73,12 +123,12 @@ namespace DataStructures.Graphs
         /// </summary>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public List<T> TopologicalSort()
+        public List<V> TopologicalSort()
         {
-            List<T> result = [];
-            Queue<T> queue = [];
+            List<V> result = [];
+            Queue<V> queue = [];
 
-            Dictionary<T, int> inDegree = FindInDegree();
+            Dictionary<V, int> inDegree = FindInDegree();
 
             foreach (var item in inDegree)
             {
@@ -90,18 +140,18 @@ namespace DataStructures.Graphs
 
             while (queue.Count > 0)
             {
-                T node = queue.Dequeue();
-                result.Add(node);
+                V nodeValue = queue.Dequeue();
+                result.Add(nodeValue);
 
-                foreach (var neighbour in _source[node].Children)
+                foreach (var neighbourValue in _source[nodeValue].Children)
                 {
-                    inDegree[neighbour]--;
-                    if (inDegree[neighbour] == 0)
-                        queue.Enqueue(neighbour);
+                    inDegree[neighbourValue]--;
+                    if (inDegree[neighbourValue] == 0)
+                        queue.Enqueue(neighbourValue);
                 }
             }
 
-            if (result.Count != Count)
+            if (result.Count != Nodes.Count)
                 throw new Exception("Cycle detected");
 
             return result;
@@ -111,9 +161,9 @@ namespace DataStructures.Graphs
         /// Generates data for in-degree (nodes pointing) count of each node
         /// </summary>
         /// <returns></returns>
-        private Dictionary<T, int> FindInDegree()
+        private Dictionary<V, int> FindInDegree()
         {
-            Dictionary<T, int> result = [];
+            Dictionary<V, int> result = [];
             foreach (var node in _source.Keys)
             {
                 result.Add(node, 0);
