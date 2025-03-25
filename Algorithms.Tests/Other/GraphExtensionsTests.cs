@@ -1,4 +1,4 @@
-﻿using Algorithms.Other.GraphExtensions;
+﻿using Algorithms.Graphs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Algorithms.Tests.Other

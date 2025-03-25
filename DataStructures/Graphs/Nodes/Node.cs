@@ -8,6 +8,8 @@ namespace DataStructures.Graphs.Nodes
         public T Value { get; set; }
         public List<T> Children { get; set; }
 
+        object INode.Value { get => Value; }
+
         public Node(T value)
         {
             Value = value;

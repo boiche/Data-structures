@@ -1,10 +1,9 @@
 ﻿using DataStructures.Graphs;
+using DataStructures.Graphs.Nodes;
+using DataStructures.Graphs.Nodes.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataStructures.Tests.Graphs
 {
@@ -14,22 +13,23 @@ namespace DataStructures.Tests.Graphs
         [TestMethod]
         public void Link_WorksCorrectly()
         {
-            DirectedAcyclicGraph<int> graph = new();
+            DirectedAcyclicGraph<INode<int>> graph = new();
+            Node<int>[] nodes = [new Node<int>(5), new Node<int>(6), new Node<int>(7), new Node<int>(8)];
 
-            graph.CreateNode(5);
-            graph.Link(5, 6);
-            graph.Link(6, 7);
-            graph.Link(7, 8);
+            graph.CreateNode(nodes[0]);
+            graph.LinkNode(nodes[0], nodes[1]);
+            graph.LinkNode(nodes[1], nodes[2]);
+            graph.LinkNode(nodes[2], nodes[3]);
 
-            Assert.AreEqual(4, graph.Count);
-            Assert.AreEqual(1, graph[7].Children.Count);
-            Assert.AreEqual(0, graph[8].Children.Count);
+            Assert.AreEqual(4, graph.Nodes.Count);
+            Assert.AreEqual(1, graph[nodes[2]].Children.Count);
+            Assert.AreEqual(0, graph[nodes[3]].Children.Count);
         }
 
         [TestMethod]
         public void Link_Cycle_ThrowsException()
         {
-            DirectedAcyclicGraph<int> graph = new();
+            DirectedAcyclicGraph<INode<int>> graph = new();
 
             graph.CreateNode(5);
             graph.Link(5, 6);

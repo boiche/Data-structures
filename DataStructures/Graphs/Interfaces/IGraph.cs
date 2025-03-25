@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataStructures.Graphs.Nodes.Interfaces;
 
 namespace DataStructures.Graphs.Interfaces
 {
-    public interface IGraph<T>
+    public interface IGraph<T> where T : INode
     {
+        public NodeCollection<T> Nodes { get; }
     }
 }

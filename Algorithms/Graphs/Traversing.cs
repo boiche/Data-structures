@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Algorithms.Other.GraphExtensions
+namespace Algorithms.Graphs
 {
-    public static partial class GraphExtensions
+    /// <summary>
+    /// Contains examples for traversing a matrix as a graph
+    /// </summary>
+    public static partial class Traversing
     {
         private static readonly MatrixIndex[] directions = [new(1, 0), new(-1, 0), new(0, 1), new(0, -1)];
         private static int index = 0;

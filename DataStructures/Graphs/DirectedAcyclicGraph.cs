@@ -10,10 +10,9 @@ namespace DataStructures.Graphs
     /// Graph that supports single direction between nodes and no cycles
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class DirectedAcyclicGraph<T> : BaseGraph<T>
+    public class DirectedAcyclicGraph<T> : BaseGraph<T> where T : INode
     {
         private new Dictionary<T, INode<T>> _source;        
-        public override int Count { get => _source.Count; }
         public INode<T> this[T node]
         {
             get { return _source[node]; }
@@ -29,7 +28,7 @@ namespace DataStructures.Graphs
         /// </summary>
         /// <param name="node"></param>
         /// <exception cref="InvalidOperationException"></exception>
-        public void CreateNode(T node)
+        public override void CreateNode(T node)
         {
             ArgumentNullException.ThrowIfNull(node);
 
@@ -45,7 +44,7 @@ namespace DataStructures.Graphs
         /// <param name="node"></param>
         /// <param name="newNode"></param>
         /// <exception cref="KeyNotFoundException"></exception>
-        public void Link(T node, T newNode)
+        public override void LinkNode(T node, T newNode)
         {
             ArgumentNullException.ThrowIfNull(node);
             ArgumentNullException.ThrowIfNull(newNode);
@@ -56,13 +55,16 @@ namespace DataStructures.Graphs
             try
             {
                 value.Children.Add(newNode);
-                _source.TryAdd(newNode, new Node<T>(newNode));
+                if (_source.TryAdd(newNode, new Node<T>(newNode)))
+                    Nodes.Add(newNode);
+
                 TopologicalSort();
             }
             catch (Exception)
             {
                 value.Children.Remove(newNode);
                 _source.Remove(newNode);
+                Nodes.Remove(newNode);
                 throw;
             }
         }
@@ -101,7 +103,7 @@ namespace DataStructures.Graphs
                 }
             }
 
-            if (result.Count != Count)
+            if (result.Count != Nodes.Count)
                 throw new Exception("Cycle detected");
 
             return result;

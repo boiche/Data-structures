@@ -1,0 +1,4 @@
+﻿namespace DataStructures.Graphs.Interfaces
+{
+    
+}

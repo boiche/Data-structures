@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using DataStructures.Graphs.Nodes.Interfaces;
+using System.Collections.Generic;
 
-namespace DataStructures.Graphs.Nodes.Interfaces
+namespace DataStructures.Graphs.Nodes
 {
     public class IdentifiedNode<T> : IIdentifiedNode<T>
     {
@@ -14,5 +15,6 @@ namespace DataStructures.Graphs.Nodes.Interfaces
         public T Value { get; set; }
         public List<T> Children { get; set; }
         public int ID { get; }
+        object INode.Value { get => Value; }
     }
 }
