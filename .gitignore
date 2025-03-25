@@ -361,8 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/Leetcode/Playground.csproj
-/Leetcode/Playground.csproj
 /Playground/Playground.csproj
 /Playground/Program.cs
 /Playground/Playground.csproj

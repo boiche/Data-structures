@@ -1,12 +1,14 @@
 ﻿using DataStructures.Graphs.Nodes.Interfaces;
-using System;
 using System.Collections.Generic;
 
 namespace DataStructures.Graphs.Interfaces
 {
+    /// <summary>
+    /// Represents the collection of verticies in <see cref="IWeightedGraph{T, V}"/>
+    /// </summary>
     public class VertexCollection
     {
-        private Dictionary<IVerticy, Tuple<INode, INode>> _verticies;
+        private Dictionary<string, IVertex> _verticies;
 
         public int Count { get => _verticies.Count; }
 
@@ -15,20 +17,24 @@ namespace DataStructures.Graphs.Interfaces
             _verticies = [];
         }
 
-        public Tuple<INode, INode> this[IVerticy index]
+        internal IVertex FindVertex(INode first, INode second)
         {
-            get { return _verticies[index]; }
-            set { _verticies[index] = value; }
+            return _verticies[GetKey(first, second)];
         }
 
-        internal void Add(IVerticy node, INode first, INode second)
+        internal void Add(IVertex vertex)
         {
-            _verticies.Add(node, new Tuple<INode, INode>(first, second));
+            _verticies.Add(GetKey(vertex), vertex);
         }
 
-        internal void Remove(IVerticy node)
+        internal void Remove(IVertex vertex)
         {
-            _verticies.Remove(node);
+            _verticies.Remove(GetKey(vertex));
         }
+
+        private string GetKey(IVertex vertex)
+            => $"{vertex.LinkedNodes.Item1.Value}_{vertex.LinkedNodes.Item2.Value}";
+        private string GetKey(INode first, INode second)
+            => $"{first.Value}_{second.Value}";
     }
 }

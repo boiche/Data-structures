@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace DataStructures.Graphs.Nodes
 {
+    /// <summary>
+    /// Basic graph node
+    /// </summary>
+    /// <typeparam name="T">Type of node's value</typeparam>
     public class Node<T> : INode<T>
     {
         public T Value { get; set; }
@@ -15,5 +19,8 @@ namespace DataStructures.Graphs.Nodes
             Value = value;
             Children = [];
         }
+
+        public override string ToString()
+            => $"Value = {Value}";
     }
 }

@@ -2,8 +2,8 @@
 
 namespace DataStructures.Graphs.Interfaces
 {
-    public interface IGraph<T> where T : INode
+    public interface IGraph<NodeType, ValueType> where NodeType : INode<ValueType>
     {
-        public NodeCollection<T> Nodes { get; }
+        public NodeCollection<NodeType, ValueType> Nodes { get; }
     }
 }

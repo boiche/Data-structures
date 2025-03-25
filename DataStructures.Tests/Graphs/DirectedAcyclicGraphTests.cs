@@ -13,7 +13,7 @@ namespace DataStructures.Tests.Graphs
         [TestMethod]
         public void Link_WorksCorrectly()
         {
-            DirectedAcyclicGraph<INode<int>> graph = new();
+            DirectedAcyclicGraph<INode<int>, int> graph = new();
             Node<int>[] nodes = [new Node<int>(5), new Node<int>(6), new Node<int>(7), new Node<int>(8)];
 
             graph.CreateNode(nodes[0]);
@@ -22,36 +22,39 @@ namespace DataStructures.Tests.Graphs
             graph.LinkNode(nodes[2], nodes[3]);
 
             Assert.AreEqual(4, graph.Nodes.Count);
-            Assert.AreEqual(1, graph[nodes[2]].Children.Count);
-            Assert.AreEqual(0, graph[nodes[3]].Children.Count);
+            Assert.AreEqual(1, graph[7].Children.Count);
+            Assert.AreEqual(0, graph[8].Children.Count);
         }
 
         [TestMethod]
         public void Link_Cycle_ThrowsException()
         {
-            DirectedAcyclicGraph<INode<int>> graph = new();
+            DirectedAcyclicGraph<Node<int>, int> graph = new();
+            Node<int>[] nodes = [new Node<int>(5), new Node<int>(6), new Node<int>(7), new Node<int>(8)];
 
             graph.CreateNode(5);
-            graph.Link(5, 6);
-            graph.Link(6, 7);
-            graph.Link(7, 8);
 
-            Assert.ThrowsException<Exception>(() => graph.Link(8, 5));
+            graph.LinkNode(5, 6);
+            graph.LinkNode(6, 7);
+            graph.LinkNode(7, 8);
+
+            Assert.ThrowsException<Exception>(() => graph.LinkNode(nodes[3], nodes[1]));
         }
 
         [TestMethod]
         public void TopologicalSort_WorksCorrectly()
         {
-            DirectedAcyclicGraph<int> graph = new();
+            DirectedAcyclicGraph<Node<int>, int> graph = new();
+
             graph.CreateNode(4);
             graph.CreateNode(5);
             graph.CreateNode(6);
 
-            graph.Link(4, 2);
-            graph.Link(5, 2);
-            graph.Link(6, 3);
-            graph.Link(2, 1);
-            graph.Link(3, 1);
+            graph.LinkNode(4, 2);
+            graph.LinkNode(5, 2);
+            graph.LinkNode(6, 3);
+            graph.LinkNode(2, 1);
+            graph.LinkNode(3, 1);
 
             var topoSort = graph.TopologicalSort();
             Assert.IsTrue(topoSort.SequenceEqual([4, 5, 6, 2, 3, 1]));

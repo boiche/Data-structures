@@ -1,10 +1,10 @@
 ﻿using Algorithms.Graphs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Algorithms.Tests.Other
+namespace Algorithms.Tests.Graphs
 {
     [TestClass]
-    public class GraphExtensionsTests
+    public class TraversingTests
     {
         [TestMethod]
         public void DFS_Recursive_WorksCorrectly()
@@ -17,6 +17,19 @@ namespace Algorithms.Tests.Other
 
             Assert.AreEqual("876345210", string.Join("", squareResult));
             Assert.AreEqual("91011876345210", string.Join("", nonSquareResult));
+        }
+
+        [TestMethod]
+        public void BFS_WorksCorrectly()
+        {
+            int[][] square = [[0, 1, 2], [3, 4, 5], [6, 7, 8]];
+            int[][] nonSquare = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10, 11]];
+
+            var squareResult = square.BFS();
+            var nonSquareResult = nonSquare.BFS();
+
+            Assert.AreEqual("031642758", string.Join("", squareResult));
+            Assert.AreEqual("03164297510811", string.Join("", nonSquareResult));
         }
 
         [TestMethod]

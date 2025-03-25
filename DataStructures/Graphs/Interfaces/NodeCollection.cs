@@ -1,17 +1,17 @@
 ﻿using DataStructures.Graphs.Nodes.Interfaces;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DataStructures.Graphs.Interfaces
 {
     /// <summary>
-    /// Represents the collection of nodes in <see cref="IGraph{T}"/>
+    /// Represents the collection of nodes in <see cref="IGraph{NodeType, ValueType}"/>
     /// </summary>
-    /// <typeparam name="T">Type of node</typeparam>
-    /// <typeparam name="I">Type of node's identification</typeparam>
-    public class NodeCollection<T> where T : INode
+    public class NodeCollection<NodeType, ValueType> : IEnumerable<NodeType> where NodeType : INode<ValueType>
     {
-        private Dictionary<object, List<T>> source;
+        private Dictionary<ValueType, NodeType> source;
 
         public int Count { get => source.Count; }
 
@@ -20,20 +20,35 @@ namespace DataStructures.Graphs.Interfaces
             source = [];
         }
 
-        public List<T> this[object index]
+        public NodeType this[ValueType nodeValue]
         {
-            get { return source[index]; }
-            set { source[index] = value; }
+            get { return source[nodeValue]; }
+            set { source[nodeValue] = value; }
         }
 
-        internal void Add(T node)
+        public bool Contains(ValueType value)
         {
-            source.Add(node.Value, []);
+            return source.ContainsKey(value);
         }
 
-        internal void Remove(T node)
+        internal void Add(NodeType node)
         {
-            source.Remove(node);
+            source.Add(node.Value, node);
+        }
+
+        internal void Remove(NodeType node)
+        {
+            source.Remove(node.Value);
+        }
+
+        public IEnumerator<NodeType> GetEnumerator()
+        {
+            return source.Select(x => x.Value).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
