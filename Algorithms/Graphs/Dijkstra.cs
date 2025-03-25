@@ -53,7 +53,8 @@ namespace Algorithms.Graphs
                         if (distances[adjacent] > temp_distance)
                         {
                             distances[adjacent] = temp_distance;
-                            queue.Enqueue(nextNode);
+                            if (!adjacent.Equals(to.Value))
+                                queue.Enqueue(nextNode);
                         }
                     }
                 }
