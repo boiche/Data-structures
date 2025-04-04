@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Algorithms.Math
 {
-    public static class Combinations
+    public static class Variations
     {
         /// <summary>
         /// 
@@ -18,11 +14,12 @@ namespace Algorithms.Math
         {
             List<IList<T>> result = [];
             List<T> temp = [];
-            GenerateCombinations(source, 0, k, temp, result);
+            bool[] added = new bool[source.Count];
+            GenerateVariations(source, k, temp, result, added);
             return result;
         }
 
-        private static void GenerateCombinations<T>(IList<T> source, int numbersLeft, int k, List<T> temp, List<IList<T>> result)
+        private static void GenerateVariations<T>(IList<T> source, int k, List<T> temp, List<IList<T>> result, bool[] added)
         {
             if (k == 0)
             {
@@ -30,11 +27,18 @@ namespace Algorithms.Math
                 return;
             }
 
-            for (int i = numbersLeft; i < source.Count; i++)
+            for (int i = 0; i < source.Count; i++)
             {
+                if (added[i])
+                    continue;
+
                 temp.Add(source[i]);
-                GenerateCombinations(source, i + 1, k - 1, temp, result);
+                added[i] = true;
+
+                GenerateVariations(source, k - 1, temp, result, added);
+                
                 temp.RemoveAt(temp.Count - 1);
+                added[i] = false;
             }
         }
     }

@@ -9,13 +9,13 @@ namespace Algorithms.Math
         private static List<IEnumerable<int>> list;
 
         /// <summary>
-        /// Generates <see cref="IEnumerable{T}"/> with all permutations
+        /// Generates <see cref="IList{T}"/> with all permutations
         /// </summary>
         /// <param name="from">Start number</param>
         /// <param name="to">End number</param>
         /// <returns>All permutations with numbers <paramref name="from"/> <paramref name="to"/> inclusive</returns>
         /// <exception cref="ArgumentException"><paramref name="from"/> is greater or equals to <paramref name="to"/></exception>
-        public static IEnumerable<IEnumerable<int>> Generate(int from, int to)
+        public static IList<IEnumerable<int>> Generate(int from, int to)
         {
             if (from >= to)
                 throw new ArgumentException($"Argument {nameof(from)} must be smaller than {nameof(to)}");
