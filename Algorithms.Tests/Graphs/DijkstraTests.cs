@@ -1,4 +1,4 @@
-﻿using Algorithms.Graphs;
+﻿using DataStructures.Graphs.Algorithms;
 using DataStructures.Graphs.Interfaces;
 using DataStructures.Graphs.Nodes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

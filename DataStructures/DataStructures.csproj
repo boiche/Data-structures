@@ -19,4 +19,8 @@
     <None Remove="Recursive\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Algorithms\Algorithms.csproj" />
+  </ItemGroup>
+
 </Project>

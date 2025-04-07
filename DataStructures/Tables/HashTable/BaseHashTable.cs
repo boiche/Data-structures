@@ -7,7 +7,7 @@ namespace DataStructures.Tables
         protected SingleLinkedHashNode<TKey, TValue>[] _source;
         protected int tableSize;
         public abstract void Put(TKey key, TValue value);
-        public abstract TValue GetValue(TKey key);
+        public abstract TValue Get(TKey key);
         public abstract void Remove(TKey key);
         protected virtual int HashFunction(TKey key)
         {

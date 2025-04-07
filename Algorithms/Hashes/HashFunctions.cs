@@ -28,7 +28,12 @@
             return result % bounds;
         }
 
-        public static int OneByOneHash(string key, int bounds)
+        /// <summary>
+        /// Hashes short strings
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static int OneByOneHash(string key)
         {
             int result = 0;
             for (int i = 0; i < key.Length; i++)
@@ -41,7 +46,7 @@
             result += result << 3;
             result += result >> 11;
             result += result << 15;
-            return result % bounds;
+            return result;
         }
 
         /// <summary>
@@ -59,6 +64,13 @@
             return result;
         }
 
+        /// <summary>
+        /// Cyclic Redundancy Check (CRC)
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="bounds"></param>
+        /// <param name="tab"></param>
+        /// <returns></returns>
         public static int CRCHash(string key, int bounds, int[] tab)
         {
             int result = key.Length;

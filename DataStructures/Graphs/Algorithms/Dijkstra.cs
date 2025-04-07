@@ -2,7 +2,7 @@
 using DataStructures.Graphs.Nodes.Interfaces;
 using System.Collections.Generic;
 
-namespace Algorithms.Graphs
+namespace DataStructures.Graphs.Algorithms
 {
     public static class Dijkstra
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Algorithms.Graphs
+namespace DataStructures.Graphs.Algorithms
 {
     /// <summary>
     /// Contains examples for traversing a matrix as a graph
