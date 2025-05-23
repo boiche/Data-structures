@@ -63,7 +63,7 @@ namespace DataStructures.Trees.BinaryTrees
         }
 
         /// <summary>
-        /// Add new item to the tree.
+        /// Adds new item to the tree.
         /// </summary>
         /// <param name="item"></param>
         public override void Add(T item)
@@ -108,7 +108,7 @@ namespace DataStructures.Trees.BinaryTrees
         }
 
         /// <summary>
-        /// Remove item from the tree.
+        /// Removes item from the tree.
         /// </summary>
         /// <param name="item"></param>
         /// <returns>Is an item removed from the tree</returns>
