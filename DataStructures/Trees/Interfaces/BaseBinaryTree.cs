@@ -1,4 +1,5 @@
 ﻿using DataStructures.Recursive.Enumerators.BinaryTree;
+using DataStructures.Trees.Enumerators.BinaryTree;
 using DataStructures.Trees.Nodes;
 using DataStructures.Trees.Nodes.Interfaces;
 using System;
@@ -142,6 +143,9 @@ namespace DataStructures.Trees.Interfaces
                     break;
                 case Traverse.LevelOrder:
                     _traversor = new LevelOrderTraversor<T>(root);
+                    break;
+                case Traverse.Morris:
+                    _traversor = new MorrisTraversor<T>(root);
                     break;
             }
         }

@@ -10,6 +10,7 @@
         Preorder,
         Postorder,
         Inorder,
-        LevelOrder
+        LevelOrder,
+        Morris
     }
 }

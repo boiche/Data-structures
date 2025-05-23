@@ -29,7 +29,7 @@ namespace DataStructures.Graphs
         /// </summary>
         /// <param name="node"></param>
         /// <exception cref="InvalidOperationException"></exception>
-        public void CreateNode(V nodeValue)
+        public new void CreateNode(V nodeValue)
         {
             ArgumentNullException.ThrowIfNull(nodeValue);
 
@@ -70,8 +70,10 @@ namespace DataStructures.Graphs
             try
             {
                 value.Children.Add(newNode.Value);
-                if (_source.TryAdd(newNode.Value, new Node<V>(newNode.Value)))
-                    Nodes.Add(newNode);
+                if (!_source.TryAdd(newNode.Value, new Node<V>(newNode.Value)))
+                    CreateNode(newNode);
+                else
+                    Nodes.Add(newNode); //TODO: either make CreateNode bool or make TryAdd create the new node into the Nodes collection (new node is not inserted in the Nodes collection)
 
                 TopologicalSort();
             }
@@ -152,7 +154,7 @@ namespace DataStructures.Graphs
             }
 
             if (result.Count != Nodes.Count)
-                throw new Exception("Cycle detected");
+                throw new InvalidOperationException("Cycle detected");
 
             return result;
         }

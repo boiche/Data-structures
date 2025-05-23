@@ -1,6 +1,7 @@
 ﻿using DataStructures.Graphs;
 using DataStructures.Graphs.Nodes;
 using DataStructures.Graphs.Nodes.Interfaces;
+using Microsoft.ApplicationInsights.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
@@ -30,7 +31,6 @@ namespace DataStructures.Tests.Graphs
         public void Link_Cycle_ThrowsException()
         {
             DirectedAcyclicGraph<Node<int>, int> graph = new();
-            Node<int>[] nodes = [new Node<int>(5), new Node<int>(6), new Node<int>(7), new Node<int>(8)];
 
             graph.CreateNode(5);
 
@@ -38,7 +38,7 @@ namespace DataStructures.Tests.Graphs
             graph.LinkNode(6, 7);
             graph.LinkNode(7, 8);
 
-            Assert.ThrowsException<Exception>(() => graph.LinkNode(nodes[3], nodes[1]));
+            Assert.ThrowsException<InvalidOperationException>(() => graph.LinkNode(8, 5));
         }
 
         [TestMethod]
@@ -58,6 +58,34 @@ namespace DataStructures.Tests.Graphs
 
             var topoSort = graph.TopologicalSort();
             Assert.IsTrue(topoSort.SequenceEqual([4, 5, 6, 2, 3, 1]));
+        
+        }
+
+        [TestMethod]
+        public void TopologicalSort_WorksCorrectly2()
+        {
+            DirectedAcyclicGraph<Node<int>, int> graph = new();
+
+            graph.CreateNode(0);
+            graph.CreateNode(1);
+
+            graph.LinkNode(0, 1);
+
+            var topoSort = graph.TopologicalSort();
+            Assert.IsTrue(topoSort.SequenceEqual([0, 1]));
+        }
+
+        [TestMethod]
+        public void TopologicalSort_Cycle_WorksCorrectly()
+        {
+            DirectedAcyclicGraph<Node<int>, int> graph = new();
+
+            graph.CreateNode(0);
+            graph.CreateNode(1);
+
+            graph.LinkNode(0, 1);            
+
+            Assert.ThrowsException<InvalidOperationException>(() => graph.LinkNode(1, 0));
         }
     }
 }

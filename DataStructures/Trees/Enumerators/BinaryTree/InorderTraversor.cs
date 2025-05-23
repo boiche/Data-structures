@@ -1,9 +1,7 @@
-﻿using DataStructures.Linear;
-using DataStructures.Trees.Nodes.Interfaces;
+﻿using DataStructures.Trees.Nodes.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace DataStructures.Recursive.Enumerators.BinaryTree
 {

@@ -73,8 +73,6 @@ namespace DataStructures.Linear.LinkedLists
             Count++;
         }
 
-        public void DoNotnig() {}
-
         /// <summary>
         /// Returns node at given index.
         /// </summary>
@@ -111,6 +109,11 @@ namespace DataStructures.Linear.LinkedLists
                 else index++;
             }
             return -1;
+        }
+
+        public void Reverse()
+        {
+
         }
 
         /// <summary>
