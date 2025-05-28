@@ -10,6 +10,8 @@ namespace DataStructures.Linear.LinkedLists
         private SingleLinkedNode<T> _root;
         private SingleLinkedNode<T> _tail;
         public int Count { get; private set; }
+        public SingleLinkedNode<T> Root { get => _root; }
+        public SingleLinkedNode<T> Tail { get => _tail; }
 
         public SingleLinkedList()
         {

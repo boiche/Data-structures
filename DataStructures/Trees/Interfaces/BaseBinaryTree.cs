@@ -1,5 +1,6 @@
 ﻿using DataStructures.Recursive.Enumerators.BinaryTree;
 using DataStructures.Trees.Enumerators.BinaryTree;
+using DataStructures.Trees.Enumerators.BinaryTree.Interfaces;
 using DataStructures.Trees.Nodes;
 using DataStructures.Trees.Nodes.Interfaces;
 using System;
@@ -7,7 +8,7 @@ using System.Collections.Generic;
 
 namespace DataStructures.Trees.Interfaces
 {
-    public abstract class BaseBinaryTree<T> : BaseTree<T>, ISingleRootTree<IBinaryTreeNode<T>>
+    public abstract class BaseBinaryTree<T> : BaseTree<T>, IBinaryTreeEnumerable<T>
     {
         protected BaseBinaryTree(IEnumerable<T> source, TreeOptions options) : base(source) 
         {
@@ -15,50 +16,16 @@ namespace DataStructures.Trees.Interfaces
         }
 
         protected TreeOptions options;
+        protected new IBinaryTreeEnumerator<T> _traversor;
         protected IBinaryTreeNode<T> current;
         protected IBinaryTreeNode<T> previous;
         protected IBinaryTreeNode<T> root;
-        public IBinaryTreeNode<T> Root { get => root; }
-        public abstract IBinaryTreeNode<T> Find(T item);
-        public abstract void Add(T item);
-        public abstract bool Remove(T item);
+        public new IBinaryTreeNode<T> Root { get => root; }
+        public abstract IBinaryTreeNode<T> Find(T item);        
 
-        protected override void BuildTree()
+        protected void BuildTree()
         {
-            BinaryTreeNode<T> treeNode;
-            IEnumerator<T> enumerator = _source.GetEnumerator();
-            if (!enumerator.MoveNext())
-            {
-                treeNode = new BinaryTreeNode<T>(default);
-                root = treeNode;
-                return;
-            }
-
-            Queue<BinaryTreeNode<T>> queue = new();
-            queue.Enqueue(new BinaryTreeNode<T>(enumerator.Current));
-
-            while (queue.Count > 0)
-            {
-                var current = queue.Dequeue();
-
-                if (root == null)
-                    root = current;
-
-                BinaryTreeNode<T> left = null, right = null;
-                if (enumerator.MoveNext())
-                {
-                    left = new BinaryTreeNode<T>(enumerator.Current);
-                    queue.Enqueue(left);
-                }
-                if (enumerator.MoveNext())
-                {
-                    right = new BinaryTreeNode<T>(enumerator.Current);
-                    queue.Enqueue(right);
-                }
-
-                current.LeftNode = left;
-                current.RightNode = right;
-            }
+            
         }
 
         /// <summary>
@@ -128,7 +95,7 @@ namespace DataStructures.Trees.Interfaces
 
             return 1 + Math.Max(GetHeight(node.LeftNode), GetHeight(node.RightNode));
         }
-        protected void SetTraversor()
+        protected override void SetTraversor()
         {
             switch (options.Traverse)
             {
@@ -148,6 +115,11 @@ namespace DataStructures.Trees.Interfaces
                     _traversor = new MorrisTraversor<T>(root);
                     break;
             }
+        }
+
+        public new IBinaryTreeEnumerator<T> GetEnumerator()
+        {
+            return _traversor;
         }
     }
 }

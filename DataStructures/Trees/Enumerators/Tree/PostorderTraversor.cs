@@ -3,38 +3,42 @@ using DataStructures.Trees.Nodes.Interfaces;
 using System;
 using System.Collections;
 
-namespace DataStructures.Recursive.Enumerators.BinaryTree
+namespace DataStructures.Trees.Enumerators.Tree
 {
     /// <summary>
-    /// Implementation of Inorder traversal <c>(Left-Root-Right)</c>. Applicable for <see cref="IBinaryTreeNode{T}"/> 
+    /// Implementation of Postorder traversal <c>(Children-Root)</c>. Applicable for <see cref="ITreeNode{T}"/>
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    internal class InorderTraversor<T> : IBinaryTreeEnumerator<T>
+    internal class PostorderTraversor<T> : ITreeEnumerator<T>
     {
-        private readonly IBinaryTreeNode<T> _root;
-        private IBinaryTreeNode<T> _current;
-        private readonly Linear.Queue<IBinaryTreeNode<T>> _queue;
+        private ITreeNode<T> _current;
+        private readonly ITreeNode<T> _root;
+        private Linear.Queue<ITreeNode<T>> _queue;
 
         public T Current => _current.Value;
-        public IBinaryTreeNode<T> CurrentNode => _current;
-        object IEnumerator.Current => _current;        
+        public ITreeNode<T> CurrentNode => _current;
+        object IEnumerator.Current => Current;        
 
-        public InorderTraversor(IBinaryTreeNode<T> root)
+        public PostorderTraversor(ITreeNode<T> root)
         {
             ArgumentNullException.ThrowIfNull(root);
             _root = root;
             _queue = new();
+
             CreateQueue(root);
         }
 
-        private void CreateQueue(IBinaryTreeNode<T> root)
+        private void CreateQueue(ITreeNode<T> root)
         {
             if (root == null)
                 return;
 
-            CreateQueue(root.LeftNode);
+            foreach (ITreeNode<T> child in root.Children)
+            {
+                CreateQueue(child);
+            }
+
             _queue.Enqueue(root);
-            CreateQueue(root.RightNode);
         }
 
         public void Dispose()
@@ -44,9 +48,9 @@ namespace DataStructures.Recursive.Enumerators.BinaryTree
 
         public bool MoveNext()
         {
-            if (_queue.Count > 0)
+            if (_queue.TryDequeue(out ITreeNode<T> next))
             {
-                _current = _queue.Dequeue();
+                _current = next;
                 return true;
             }
 
@@ -55,6 +59,7 @@ namespace DataStructures.Recursive.Enumerators.BinaryTree
 
         public void Reset()
         {
+            _current = default;
             _queue.Clear();
             CreateQueue(_root);
         }

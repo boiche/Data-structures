@@ -1,12 +1,12 @@
-﻿using DataStructures.Trees.Interfaces;
+﻿using DataStructures.Linear;
+using DataStructures.Trees.Interfaces;
 using DataStructures.Trees.Nodes;
 using DataStructures.Trees.Nodes.Interfaces;
 using System;
-using System.Collections.Generic;
 
 namespace DataStructures.Trees.BinaryTrees
 {
-    public class BinaryTree<T> : BaseBinaryTree<T> where T : IEquatable<T>, IComparable<T>
+    public class BinaryTree<T> : BaseBinaryTree<T>
     {
         public BinaryTree() : this(null, new TreeOptions()) { }        
         public BinaryTree(List<T> source) : this(source, new TreeOptions()) { }        
@@ -27,162 +27,54 @@ namespace DataStructures.Trees.BinaryTrees
         /// <returns>The node if the value is present in the tree. Null vice versa.</returns>
         public override IBinaryTreeNode<T> Find(T item)
         {
-            if (current == null) current = Root;
-            int result = current.Value.CompareTo(item);
-            if (result > 0)
-            {
-                if (current.LeftNode == null)
-                {
-                    current = null;
-                    return default;
-                }
-                else
-                {
-                    current = current.LeftNode;
-                    return Find(current.Value);
-                }
-            }
-            else if (result < 0)
-            {
-                if (current.RightNode == null)
-                {
-                    current = null;
-                    return default;
-                }
-                else
-                {
-                    current = current.RightNode;
-                    return Find(current.Value);
-                }
-            }
-            else
-            {
-                current = null;
-                return current;
-            }
-        }
+            var enumerator = GetEnumerator();
 
-        /// <summary>
-        /// Adds new item to the tree.
-        /// </summary>
-        /// <param name="item"></param>
-        public override void Add(T item)
-        {
-            if (Root == null)
+            while (enumerator.MoveNext())
             {
-                root = new BinaryTreeNode<T>(item);
-                Count++;
-                SetTraversor();
-                return;
+                if (enumerator.Current.Equals(item))
+                    return enumerator.CurrentNode;
             }
-            if (current == null) current = Root;
-            int result = current.Value.CompareTo(item);
-            if (result > 0) //move left
-            {
-                if (current.LeftNode == null)
-                {
-                    current.LeftNode = new BinaryTreeNode<T>(item);
-                    Count++;
-                    return;
-                }
-                else
-                {
-                    current = current.LeftNode;
-                    Add(item);
-                }
-            }
-            else if (result < 0) //move right
-            {
-                if (current.RightNode == null)
-                {
-                    current.RightNode = new BinaryTreeNode<T>(item);
-                    Count++;
-                    return;
-                }
-                else
-                {
-                    current = current.RightNode;
-                    Add(item);
-                }
-            }
-        }
 
-        /// <summary>
-        /// Removes item from the tree.
-        /// </summary>
-        /// <param name="item"></param>
-        /// <returns>Is an item removed from the tree</returns>
-        public override bool Remove(T item)
+            return null;
+        }
+        
+        public override void AddComponent(T item)
         {
-            if (item == null) return false;
-            if (Count == 0) return false;                  
+            throw new NotImplementedException(); // create new component (should extend base trees to support components) 
+        }
+        
+        public override void Remove(T value)
+        {
+            if (value == null || Count == 0) 
+                return;                            
             if (Count == 1)
             {
-                if (item.CompareTo(Root.Value) == 0)
+                if (value.Equals(Root.Value))
                 {
                     root = default;
                     Count = 0;
-                    return true;
-                }
-                else
-                {
-                    return false;
+                    return;
                 }
             }
-            if (current == null) current = Root;
 
-            if (current.Value.CompareTo(item) > 0) //move to the left
+            Queue<IBinaryTreeNode<T>> queue = new();
+            queue.Enqueue(root);
+
+            while (queue.Count > 0)
             {
-                previous = current;
-                current = current.LeftNode;
-                if (current != null)
-                    return Remove(current.LeftNode.Value);
-                else
-                    return false;
-            }
-            else if (current.Value.CompareTo(item) == 0) //item found
-            {
-                if (current.IsLeaf)
+                var current = queue.Dequeue();
+                if (current.Value.Equals(value))
                 {
-                    if (previous.LeftNode == current) //it was left leaf
-                        previous.LeftNode = null;
-                    else //it was right leaf
-                        previous.RightNode = null;
+                    Count -= BinaryTreeNode<T>.GetChildren(current) + 1;
+                    current = null;
                 }
                 else
                 {
-                    if (current.LeftNode is null)
-                        previous.RightNode = current.RightNode;
-                    else if (current.RightNode is null)
-                        previous.LeftNode = current.LeftNode;
-                    else
-                    {
-                        IBinaryTreeNode<T> subTreeRoot = current;
-                        do
-                        {
-                            var minRight = GetMinFromRight(subTreeRoot);
-                            if (minRight.IsLeaf)
-                            {
-                                subTreeRoot.LeftNode = null; //removes minRight as left node when it's a leaf
-                                break;
-                            }
-                            T temp = current.Value;
-                            current.Value = minRight.Value;
-                            minRight.Value = temp;
-                            subTreeRoot = minRight;
-                        } while (true);
-                    }
+                    if (current.LeftNode != null)
+                        queue.Enqueue(current.LeftNode);
+                    if (current.RightNode != null)
+                        queue.Enqueue(current.RightNode);
                 }
-                return true;
-            }
-            else //move to the right
-            {
-                previous = current;
-                current = current.RightNode;
-                if (current != null)
-                    return Remove(current.RightNode.Value);
-                else
-                    return false;
             }
         }
     }

@@ -68,6 +68,17 @@ namespace DataStructures.Linear
             index++;
         }
 
+        public bool TryDequeue(out T value)
+        {
+            value = default;
+
+            if (Count <= 0)
+                return false;
+
+            value = Dequeue();
+            return true;
+        }
+
         public T Dequeue()
         {
             T item = elements[0];

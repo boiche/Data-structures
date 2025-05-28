@@ -127,13 +127,24 @@ namespace DataStructures.Trees
             }
         }
 
-        protected override void BuildTree()
+        protected void BuildTree()
         {
             foreach (var item in _source)
             {
                 _sets.Add(item, item);
                 _ranks.Add(item, 0);
             }
+        }
+
+        public override void AddComponent(T item)
+        {
+            Assign(item, item);
+        }
+
+        public override void Remove(T item)
+        {
+            _sets.Remove(item);
+            _ranks.Remove(item);
         }
     }
 }

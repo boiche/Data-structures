@@ -6,6 +6,11 @@ using System.Collections.Generic;
 
 namespace DataStructures.Graphs
 {
+    /// <summary>
+    /// Provides methods for building <see cref="IGraph{NodeType, ValueType}"/>
+    /// </summary>
+    /// <typeparam name="T">Node type</typeparam>
+    /// <typeparam name="V">Node's value type</typeparam>
     public static class GraphFactory<T, V> where T : INode<V>
     {
         public static IGraph<T, V> FromAdjacencyArray(T[][] values)

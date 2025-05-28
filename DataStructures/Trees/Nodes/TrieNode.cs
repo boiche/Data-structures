@@ -8,8 +8,7 @@ namespace DataStructures.Trees.Nodes
         public new Dictionary<char, TrieNode> Children { get; }
         /// <summary>
         /// Stores the count of how many words terminate at current node
-        /// </summary>        
-        public new int Value { get; set; }
+        /// </summary> 
         public TrieNode() : base(0) 
         {
             Children = new();

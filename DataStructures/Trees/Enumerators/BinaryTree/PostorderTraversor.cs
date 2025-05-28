@@ -1,7 +1,7 @@
-﻿using DataStructures.Trees.Nodes.Interfaces;
+﻿using DataStructures.Trees.Enumerators.BinaryTree.Interfaces;
+using DataStructures.Trees.Nodes.Interfaces;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace DataStructures.Recursive.Enumerators.BinaryTree
 {
@@ -9,13 +9,14 @@ namespace DataStructures.Recursive.Enumerators.BinaryTree
     /// Implementation of Postorder traversal <c>(Left-Right-Root)</c>. Applicable for <see cref="IBinaryTreeNode{T}"/> 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    internal class PostorderTraversor<T> : IEnumerator<T>
+    internal class PostorderTraversor<T> : IBinaryTreeEnumerator<T>
     {
         private IBinaryTreeNode<T> _current;
         private readonly IBinaryTreeNode<T> _root;
         private Linear.Queue<IBinaryTreeNode<T>> _queue;
 
         public T Current => _current.Value;
+        public IBinaryTreeNode<T> CurrentNode => _current;
         object IEnumerator.Current => Current;
 
         public PostorderTraversor(IBinaryTreeNode<T> root)

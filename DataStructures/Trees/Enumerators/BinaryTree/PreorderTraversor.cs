@@ -1,22 +1,23 @@
-﻿using DataStructures.Trees.Nodes.Interfaces;
+﻿using DataStructures.Trees.Enumerators.BinaryTree.Interfaces;
+using DataStructures.Trees.Nodes.Interfaces;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace DataStructures.Recursive.Enumerators.BinaryTree
 {
     /// <summary>
-    /// Implementation of Postorder traversal <c>(Root-Left-Right)</c>. Applicable for <see cref="IBinaryTreeNode{T}"/> 
+    /// Implementation of Preorder traversal <c>(Root-Left-Right)</c>. Applicable for <see cref="IBinaryTreeNode{T}"/> 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    internal class PreorderTraversor<T> : IEnumerator<T>
+    internal class PreorderTraversor<T> : IBinaryTreeEnumerator<T>
     {
         private IBinaryTreeNode<T> _current;
         private readonly IBinaryTreeNode<T> _root;
         private Linear.Queue<IBinaryTreeNode<T>> _queue;
 
         public T Current => _current.Value;
-        object IEnumerator.Current => Current;
+        public IBinaryTreeNode<T> CurrentNode => _current;
+        object IEnumerator.Current => Current;        
 
         public PreorderTraversor(IBinaryTreeNode<T> root)
         {
@@ -55,6 +56,7 @@ namespace DataStructures.Recursive.Enumerators.BinaryTree
 
         public void Reset()
         {
+            _current = default;
             _queue.Clear();
             CreateQueue(_root);
         }

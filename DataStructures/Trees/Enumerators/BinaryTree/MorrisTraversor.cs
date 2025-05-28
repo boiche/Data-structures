@@ -1,7 +1,7 @@
-﻿using DataStructures.Trees.Nodes.Interfaces;
+﻿using DataStructures.Trees.Enumerators.BinaryTree.Interfaces;
+using DataStructures.Trees.Nodes.Interfaces;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace DataStructures.Trees.Enumerators.BinaryTree
 {
@@ -9,15 +9,15 @@ namespace DataStructures.Trees.Enumerators.BinaryTree
     /// Implementation of Morris traversal <c>(Left-Root-Right)</c> without recursion or stack. Applicable for <see cref="IBinaryTreeNode{T}"/> 
     /// </summary>
     /// <typeparam name="T">Type of node's value</typeparam>
-    public class MorrisTraversor<T> : IEnumerator<T>
+    public class MorrisTraversor<T> : IBinaryTreeEnumerator<T>
     {
         private readonly IBinaryTreeNode<T> _root;
         private IBinaryTreeNode<T> _current;
         private readonly Linear.Queue<IBinaryTreeNode<T>> _queue;
 
         public T Current => _current.Value;
-
-        object IEnumerator.Current => _current;
+        public IBinaryTreeNode<T> CurrentNode => _current;
+        object IEnumerator.Current => _current;        
 
         public MorrisTraversor(IBinaryTreeNode<T> root)
         {

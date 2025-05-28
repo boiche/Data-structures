@@ -1,7 +1,7 @@
-﻿using DataStructures.Trees.Nodes.Interfaces;
+﻿using DataStructures.Trees.Enumerators.BinaryTree.Interfaces;
+using DataStructures.Trees.Nodes.Interfaces;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace DataStructures.Recursive.Enumerators.BinaryTree
 {
@@ -9,11 +9,15 @@ namespace DataStructures.Recursive.Enumerators.BinaryTree
     /// Implementation of Level Order traversal <c>(BFS)</c>. Applicable for <see cref="IBinaryTreeNode{T}"/> 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class LevelOrderTraversor<T> : IEnumerator<T>
+    public class LevelOrderTraversor<T> : IBinaryTreeEnumerator<T>
     {
         private readonly IBinaryTreeNode<T> _root;
         private IBinaryTreeNode<T> _current;
         private readonly Linear.Queue<IBinaryTreeNode<T>> _queue;
+
+        public T Current => _current.Value;
+        public IBinaryTreeNode<T> CurrentNode => _current;
+        object IEnumerator.Current => Current;        
 
         public LevelOrderTraversor(IBinaryTreeNode<T> root)
         {
@@ -46,10 +50,7 @@ namespace DataStructures.Recursive.Enumerators.BinaryTree
                     _queue.Enqueue(current.RightNode);
                 }
             }
-        }
-
-        public T Current => _current.Value;
-        object IEnumerator.Current => Current;
+        }        
 
         public void Dispose()
         {

@@ -1,28 +1,30 @@
 ﻿using DataStructures.Trees.Interfaces;
 using DataStructures.Trees.Nodes;
 using DataStructures.Trees.Nodes.Interfaces;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace DataStructures.Trees
 {
     /// <summary>
     /// Stores collection of <see cref="string"/> in common-prefix tree-like structure
     /// </summary>
-    public class Trie : BaseTree<int>, ISingleRootTree<TrieNode>
+    public class Trie : BaseTree<int>
     {
-        private readonly TrieNode _root = new TrieNode();
         /// <summary>
         /// The default root node. This node doesn't store data for the values of the tree
         /// </summary>
-        public TrieNode Root => _root;
+        private new TrieNode _root = new TrieNode();
+        public new TrieNode Root { get => _root; } // Trie will have two Root properties in debug. DebuggerTypeProxy can handle it. Define model class, that will provide properties/field that are browsable for current type
 
-        public Trie() : base(new List<int>()) { }        
+        public Trie() : base(new List<int>()) { }
         public Trie(List<string> source) : base(source) 
         {
             BuildTree();
         }
 
-        protected override void BuildTree()
+        protected void BuildTree()
         {
             foreach (var item in temp_source)
             {
@@ -30,9 +32,13 @@ namespace DataStructures.Trees
             }
         }
 
+        /// <summary>
+        /// Merges a new word into the tree
+        /// </summary>
+        /// <param name="value"></param>
         public void Insert(string value)
         {
-            TrieNode node = Root;
+            TrieNode node = _root;
             for (var i = 0; i < value.Length; i++)
             {
                 if (!node.Children.TryGetValue(value[i], out _))
@@ -46,9 +52,14 @@ namespace DataStructures.Trees
             node.Value++;
         }
 
+        /// <summary>
+        /// Looks for a word in the tree
+        /// </summary>
+        /// <param name="value">Search term</param>
+        /// <returns>Whether the word is present in the tree</returns>
         public bool Find(string value)
         {
-            TrieNode node = Root;
+            TrieNode node = _root;
 
             for (int i = 0; i < value.Length; i++)
             {
@@ -61,17 +72,19 @@ namespace DataStructures.Trees
             return node.Value > 0;
         }
 
+        /// <summary>
+        /// Removes a word from the tree
+        /// </summary>
+        /// <param name="value">Word to remove</param>
+        /// <returns>Whether the word is removed</returns>
         public bool Remove(string value) 
         {
-            TrieNode current = Root;
+            TrieNode current = _root;
             TrieNode last_branch_node = null;
             char last_branch_char = 'a';
 
-            // loop through each character in the word
             foreach (char c in value)
             {
-                // if the current node doesn't have a child with the current character,
-                // return False as the word is not present in Trie
                 if (current.Children[c] == null)
                 {
                     return false;
@@ -80,8 +93,6 @@ namespace DataStructures.Trees
                 {
                     int count = current.Children.Count;
 
-                    // if the count of children is more than 1,
-                    // store the node and the current character
                     if (count > 1)
                     {
                         last_branch_node = current;
@@ -93,32 +104,44 @@ namespace DataStructures.Trees
             }
 
             int wordCount = 0;
-            // count the number of children nodes of the current node
             foreach (var child in current.Children)
             {
                 wordCount += child.Value.Value;
             }
 
-            // Case 1: The deleted word is a prefix of other words in Trie
             if (wordCount > 0)
             {
                 current.Value--;
                 return true;
             }
 
-            // Case 2: The deleted word shares a common prefix with other words in Trie
             if (last_branch_node != null)
             {
                 last_branch_node.Children[last_branch_char] = null;
                 return true;
             }
 
-            // Case 3: The deleted word does not share any common prefix with other words in Trie
             else
             {
                 Root.Children[value[0]] = null;
                 return true;
             }
+        }
+
+        // not fine instructing to pass explicitly casted char to int, but made as a workaround
+        /// <summary>
+        /// Appends single character to the root of the tree. <para>Character should be passed as int</para>
+        /// </summary>
+        /// <param name="item"></param>
+        public override void AddComponent(int item)
+        {
+            if (!_root.Children.ContainsKey((char)item))
+                _root.Children.Add((char)item, new() { Value = 1 });
+        }
+
+        public override void Remove(int item)
+        {
+            throw new NotImplementedException();
         }
     }
 }

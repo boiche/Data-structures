@@ -15,5 +15,19 @@ namespace DataStructures.Trees.Nodes
             LeftNode = null;
             RightNode = null;
         }
+
+        internal static int GetChildren(IBinaryTreeNode<T> current)
+        {
+            if (current == null)
+                return 0;
+
+            int result = 0;
+            if (current.LeftNode != null)
+                result++;
+            if (current.RightNode != null)
+                result++;
+
+            return GetChildren(current.LeftNode) + GetChildren(current.RightNode) + result;
+        }
     }
 }

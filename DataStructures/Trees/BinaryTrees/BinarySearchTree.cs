@@ -63,7 +63,7 @@ namespace DataStructures.Trees.BinaryTrees
         /// Add new item to the tree.
         /// </summary>
         /// <param name="item"></param>
-        public override void Add(T item)
+        public void Add(T item)
         {
             if (Root == null)
             {
@@ -106,21 +106,23 @@ namespace DataStructures.Trees.BinaryTrees
             }
         }
 
-        /// <summary>
-        /// Remove item from the tree.
-        /// </summary>
-        /// <param name="item"></param>
-        /// <returns>Is an item removed from the tree</returns>
-        public override bool Remove(T item)
+        public override void AddComponent(T item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Remove(T item)
         {
             if (current == null) current = Root;
-            if (item == null) return false;
+            if (item == null) 
+                return;
 
             if (current.Value.CompareTo(item) > 0) //move to the left
             {
                 previous = current;
                 current = current.LeftNode;
-                return Remove(current.LeftNode.Value);
+                Remove(current.LeftNode.Value);
+                return;
             }
             else if (current.Value.CompareTo(item) == 0) //item found
             {
@@ -155,13 +157,14 @@ namespace DataStructures.Trees.BinaryTrees
                         } while (true);
                     }
                 }
-                return true;
+                return;
             }
             else //move to the right
             {
                 previous = current;
                 current = current.RightNode;
-                return Remove(current.RightNode.Value);
+                Remove(current.RightNode.Value);
+                return;
             }
         }
     }

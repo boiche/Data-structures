@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DataStructures.Trees.Nodes
 {
-    public abstract class TreeNode<T> : ITreeNode<T>
+    public class TreeNode<T> : ITreeNode<T>
     {
         public T Value { get; set; }
         public IList<ITreeNode<T>> Children { get; internal set; }

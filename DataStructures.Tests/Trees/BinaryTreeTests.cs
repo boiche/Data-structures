@@ -1,6 +1,6 @@
-﻿using DataStructures.Trees.BinaryTrees;
+﻿using DataStructures.Linear;
+using DataStructures.Trees.BinaryTrees;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 
 namespace DataStructures.Tests.Trees
 {
@@ -21,7 +21,7 @@ namespace DataStructures.Tests.Trees
         {
             BinaryTree<int> emptyTree = new();
 
-            emptyTree.Add(1);
+            emptyTree.AddComponent(1);
 
             Assert.AreEqual(1, emptyTree.Root.Value);
             Assert.AreEqual(1, emptyTree.Count);
@@ -30,13 +30,18 @@ namespace DataStructures.Tests.Trees
         [TestMethod]
         public void RemoveNodeWorksCorrectly()
         {
-            BinaryTree<int> emptyTree = new();
+            BinaryTree<int> tree = new();
 
-            emptyTree.Add(1);
+            tree.AddComponent(1);
             
-            Assert.IsFalse(emptyTree.Remove(2));
-            Assert.IsTrue(emptyTree.Remove(1));
-            Assert.IsFalse(emptyTree.Remove(1));
+            tree.Remove(2);
+            Assert.AreEqual(1, tree.Count);
+
+            tree.Remove(1);
+            Assert.AreEqual(0, tree.Count);
+
+            tree.Remove(1);
+            Assert.AreEqual(0, tree.Count);
         }
     }
 }
