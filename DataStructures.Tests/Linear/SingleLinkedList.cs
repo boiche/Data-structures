@@ -31,7 +31,7 @@ namespace DataStructures.Tests.Linear
             }
 
             Assert.AreEqual(expected.Length, list.Count);
-            for (int i = 0; i < expected.Length; i++) Assert.AreEqual(expected[i], list.GetValueAt(i));            
+            for (int i = 0; i < expected.Length; i++) Assert.AreEqual(expected[i], list.GetValueAt(i));
         }
 
         [TestMethod]
@@ -52,7 +52,7 @@ namespace DataStructures.Tests.Linear
         public void InsertMultipleNodesWorksCorrectly()
         {
             int[] expected = { 1, 2, 3, 4, 5, 6, 7 };
-            list = SingleLinkedListFactory<int>.GetListFromArray(new int[]{ 1, 2, 3, 5, 7 }); // insert 4 and 6
+            list = SingleLinkedListFactory<int>.GetListFromArray(new int[] { 1, 2, 3, 5, 7 }); // insert 4 and 6
             list.InsertNode(4, 3);
             list.InsertNode(6, 5);
             for (int i = 0; i < expected.Length; i++) Assert.AreEqual(expected[i], list.GetValueAt(i));

@@ -15,5 +15,5 @@ namespace DataStructures.Linear.LinkedLists.SingleLinkedList.Nodes
         {
             Key = key;
         }
-    }    
+    }
 }

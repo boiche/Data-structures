@@ -1,9 +1,7 @@
 ﻿using DataStructures.Trees.Interfaces;
 using DataStructures.Trees.Nodes;
-using DataStructures.Trees.Nodes.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace DataStructures.Trees
 {
@@ -19,7 +17,7 @@ namespace DataStructures.Trees
         public new TrieNode Root { get => _root; } // Trie will have two Root properties in debug. DebuggerTypeProxy can handle it. Define model class, that will provide properties/field that are browsable for current type
 
         public Trie() : base(new List<int>()) { }
-        public Trie(List<string> source) : base(source) 
+        public Trie(List<string> source) : base(source)
         {
             BuildTree();
         }
@@ -43,9 +41,9 @@ namespace DataStructures.Trees
             {
                 if (!node.Children.TryGetValue(value[i], out _))
                 {
-                    node.Children.Add(value[i], new TrieNode());             
+                    node.Children.Add(value[i], new TrieNode());
                 }
-                
+
                 node = node.Children[value[i]];
             }
 
@@ -77,7 +75,7 @@ namespace DataStructures.Trees
         /// </summary>
         /// <param name="value">Word to remove</param>
         /// <returns>Whether the word is removed</returns>
-        public bool Remove(string value) 
+        public bool Remove(string value)
         {
             TrieNode current = _root;
             TrieNode last_branch_node = null;

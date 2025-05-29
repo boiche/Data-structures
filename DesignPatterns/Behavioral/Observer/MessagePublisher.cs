@@ -25,7 +25,7 @@ namespace DesignPatterns.Behavioral.Observer
         {
             publisherType = PublisherTypes.Message;
             _sourceNameGenerator = new RegExpDataGenerator($"[A-Z]\\w{{2, 10}}");
-            _URLGenerator = new RegExpDataGenerator($"https?://\\w{{2, 10}}\\.(com|bg|net|org)");            
+            _URLGenerator = new RegExpDataGenerator($"https?://\\w{{2, 10}}\\.(com|bg|net|org)");
         }
 
         public void PublishMessage(string message, bool newSource = true) //new message from external API has invoked this notification method

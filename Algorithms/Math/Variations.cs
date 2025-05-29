@@ -36,7 +36,7 @@ namespace Algorithms.Math
                 added[i] = true;
 
                 GenerateVariations(source, k - 1, temp, result, added);
-                
+
                 temp.RemoveAt(temp.Count - 1);
                 added[i] = false;
             }

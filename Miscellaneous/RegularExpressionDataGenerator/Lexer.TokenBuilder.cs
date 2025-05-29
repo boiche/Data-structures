@@ -43,7 +43,7 @@ namespace RegularExpressionDataGenerator
 
         public static RepetitionToken BuildRepetitionToken(int minOccurs, int maxOccurs)
         {
-            return new RepetitionToken { MinOccurs = minOccurs, MaxOccurs = maxOccurs};
+            return new RepetitionToken { MinOccurs = minOccurs, MaxOccurs = maxOccurs };
         }
 
         public static ParenthesisLeftToken BuildParenthesisLeftToken()

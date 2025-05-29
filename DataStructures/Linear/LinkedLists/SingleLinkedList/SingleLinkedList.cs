@@ -37,7 +37,7 @@ namespace DataStructures.Linear.LinkedLists
         public void AddNode(T value)
         {
             SingleLinkedNode<T> newNode = new SingleLinkedNode<T>(value, this, null);
-            
+
             if (Count == 0)
             {
                 _root = newNode;
@@ -96,7 +96,7 @@ namespace DataStructures.Linear.LinkedLists
         /// <returns></returns>
         /// <exception cref="IndexOutOfRangeException"></exception>
         public T GetValueAt(int index) => FindAt(index).Value;
-        
+
         /// <summary>
         /// Returns the index of the first element with matched value. If not found, returns -1.
         /// </summary>
@@ -140,7 +140,7 @@ namespace DataStructures.Linear.LinkedLists
             SingleLinkedNode<T> parent = FindAt(index - 1);
             SingleLinkedNode<T> toRemove = parent.NextNode;
             parent.LinkNode(toRemove.NextNode);
-            toRemove.UnlinkNode();            
+            toRemove.UnlinkNode();
         }
 
         public void Clear()

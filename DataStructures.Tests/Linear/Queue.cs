@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text;
-using DataStructures.Linear;
+﻿using DataStructures.Linear;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DataStructures.Tests.Linear
@@ -32,7 +30,7 @@ namespace DataStructures.Tests.Linear
         [TestMethod]
         public void DequeueItem()
         {
-            int item=populatedQueue.Dequeue();
+            int item = populatedQueue.Dequeue();
             Assert.AreEqual(1, item);
             Assert.AreEqual(8, populatedQueue.Count);
         }
@@ -52,7 +50,7 @@ namespace DataStructures.Tests.Linear
             {
                 growthFactorQueue.Enqueue(i);
             }
-            
+
             Assert.AreEqual(20, growthFactorQueue.Capacity);
             Assert.AreEqual(6, growthFactorQueue.Count);
         }

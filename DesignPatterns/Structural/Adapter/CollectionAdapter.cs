@@ -9,8 +9,8 @@ namespace DesignPatterns.Structural.Adapter
     {
         public static List<T> GetList<T>(this IEnumerable<T> collection)
         {
-            List<T> list = new List<T>();            
-            
+            List<T> list = new List<T>();
+
             var enumerator = collection.GetEnumerator();
             while (enumerator.MoveNext())
             {
@@ -78,7 +78,7 @@ namespace DesignPatterns.Structural.Adapter
             switch (Type.GetTypeCode(typeof(T)))
             {
                 case TypeCode.Empty:
-                case TypeCode.Object:                    
+                case TypeCode.Object:
                 case TypeCode.DBNull:
                     throw new NotSupportedException();
                 case TypeCode.Boolean:
@@ -116,7 +116,7 @@ namespace DesignPatterns.Structural.Adapter
             }
         }
         public static bool IsUnmanaged(this Type t)
-        {            
+        {
             try { typeof(Temp<>).MakeGenericType(t); return true; }
             catch (Exception) { return false; }
         }

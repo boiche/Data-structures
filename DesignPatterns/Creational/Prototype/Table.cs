@@ -8,7 +8,7 @@ namespace DesignPatterns.Creational.Prototype
         public int Columns { get; set; }
         public IEnumerable<object> DataSource { get; set; }
 
-        public Table() : base() { }        
+        public Table() : base() { }
 
         public override void Render()
         {
@@ -29,7 +29,7 @@ namespace DesignPatterns.Creational.Prototype
                 foreach (var item in DataSource.GetType().GetGenericTypeDefinition().GetProperties().Select(x => x.Name))
                 {
                     _htmlBuilder.Append($"<th>{item}</th>");
-                }                
+                }
             }
             else
             {

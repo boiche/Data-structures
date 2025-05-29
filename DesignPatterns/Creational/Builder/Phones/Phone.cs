@@ -1,5 +1,4 @@
-﻿using DesignPatterns.Creational.Builder.PhoneBuilders.Interfaces;
-using DesignPatterns.Creational.Builder.PhoneComponents;
+﻿using DesignPatterns.Creational.Builder.PhoneComponents;
 
 namespace DesignPatterns.Creational.Builder.Phones
 {
@@ -11,6 +10,6 @@ namespace DesignPatterns.Creational.Builder.Phones
         public Camera Camera { get; } = new Camera();
         public Memory Memory { get; } = new Memory();
         public OS OperatingSystem { get; } = new OS();
-        public CPU CentralPowerUnit { get; } = new CPU();        
+        public CPU CentralPowerUnit { get; } = new CPU();
     }
 }

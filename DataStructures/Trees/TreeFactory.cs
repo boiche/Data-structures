@@ -1,10 +1,8 @@
-﻿using DataStructures.Linear.LinkedLists;
+﻿using DataStructures.Trees.Interfaces;
 using DataStructures.Trees.Nodes;
 using DataStructures.Trees.Nodes.Interfaces;
-using DataStructures.Trees.Interfaces;
-using System.Collections.Generic;
-using DataStructures.Linear.LinkedLists.SingleLinkedList.Nodes;
 using System;
+using System.Collections.Generic;
 
 namespace DataStructures.Trees
 {
@@ -35,7 +33,7 @@ namespace DataStructures.Trees
 
                 if (nodes.TryGetValue(item[0], out ITreeNode<T> value))
                 {
-                    value.Children.Add(second);                    
+                    value.Children.Add(second);
                 }
                 else
                 {
@@ -45,8 +43,8 @@ namespace DataStructures.Trees
                 }
 
                 if (nodes.TryGetValue(item[1], out value))
-                {                    
-                    value.Children.Add(first);                    
+                {
+                    value.Children.Add(first);
                 }
                 else
                 {
@@ -60,6 +58,6 @@ namespace DataStructures.Trees
             result.Count--;
 
             return result;
-        }        
+        }
     }
 }

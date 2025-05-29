@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
 namespace Algorithms.Other
 {
@@ -57,7 +56,7 @@ namespace Algorithms.Other
                     if (first[i - 1] == second[j - 1])
                     {
                         locals[i, j] = $"{locals[i - 1, j - 1]}{second[j - 1]}";
-                        if (locals[i, j].Length > max.Length)                        
+                        if (locals[i, j].Length > max.Length)
                             max = locals[i, j];
                     }
                 }
@@ -84,7 +83,7 @@ namespace Algorithms.Other
             }
 
             return max;
-        }        
+        }
 
         private string Recursive(int m, int n)
         {
@@ -92,6 +91,6 @@ namespace Algorithms.Other
                 return string.Empty;
 
             return $"{Recursive(m - 1, n - 1)}{first[m - 1]}";
-        }        
+        }
     }
 }

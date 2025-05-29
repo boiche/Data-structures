@@ -1,9 +1,7 @@
 ﻿using DataStructures.Trees.Enumerators.BinaryTree.Interfaces;
 using DataStructures.Trees.Enumerators.Tree;
 using DataStructures.Trees.Nodes.Interfaces;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace DataStructures.Trees.Interfaces
 {
@@ -14,13 +12,13 @@ namespace DataStructures.Trees.Interfaces
         /// </summary>
         protected IEnumerable<object> temp_source;
         protected IEnumerable<T> _source;
-        protected ITreeEnumerator<T> _traversor;           
+        protected ITreeEnumerator<T> _traversor;
         protected ITreeNode<T> _root;
 
         /// <summary>
         /// Keeps the root of the tree
         /// </summary>
-        public ITreeNode<T> Root 
+        public ITreeNode<T> Root
         {
             get => _root;
             protected set
@@ -48,8 +46,8 @@ namespace DataStructures.Trees.Interfaces
             Root = root;
             var enumerator = GetEnumerator();
 
-            while (enumerator.MoveNext())            
-                Count++;           
+            while (enumerator.MoveNext())
+                Count++;
         }
 
         /// <summary>

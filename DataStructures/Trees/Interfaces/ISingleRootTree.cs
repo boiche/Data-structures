@@ -8,6 +8,6 @@ namespace DataStructures.Trees.Interfaces
     /// <typeparam name="T"></typeparam>
     public interface ISingleRootTree<T> where T : ITreeNode
     {
-        
+
     }
 }

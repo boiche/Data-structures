@@ -41,13 +41,13 @@ namespace Algorithms.Graphs
                 foreach (var adjacent in currentNode.Children)
                 {
                     NodeType nextNode = graph.Nodes[adjacent];
-                    
+
                     if (!visited[adjacent])
                     {
                         IVertex currentVertex = graph.GetVertex(currentNode, nextNode);
                         if (currentVertex.Weight < 0)
                             throw new System.InvalidOperationException("Negative weight detected. Cannot compute shortest path.");
-                        
+
                         temp_distance = distances[currentNode.Value] + currentVertex.Weight;
 
                         if (distances[adjacent] > temp_distance)

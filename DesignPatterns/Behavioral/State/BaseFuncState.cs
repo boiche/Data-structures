@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DesignPatterns.Behavioral.State
 {
@@ -11,8 +7,8 @@ namespace DesignPatterns.Behavioral.State
         protected IFuncStateContext _taskStateContext { get; set; }
         protected dynamic _func;
 
-        internal FuncStateMetaData StateMetaData 
-        { 
+        internal FuncStateMetaData StateMetaData
+        {
             get
             {
                 return new FuncStateMetaData()
@@ -33,7 +29,7 @@ namespace DesignPatterns.Behavioral.State
         }
 
         protected virtual void AfterExecute()
-        {            
+        {
             OnAfterExecute(this, EventArgs.Empty);
         }
 

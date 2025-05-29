@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 
 namespace RegularExpressionDataGenerator
@@ -9,7 +7,7 @@ namespace RegularExpressionDataGenerator
     {
         private const int DefaultMaxOccurs = 11;
         private readonly StringBuilder _builder = new StringBuilder();
-        
+
         private GeneratorVisitor()
         { }
 
@@ -92,7 +90,7 @@ namespace RegularExpressionDataGenerator
             var max = (int)((LiteralNode)node.ChildNodes[1]).Token.Character;
             var index = RandomNumberProvider.GetRandomNumber(min, max + 1);
             var literal = new LiteralNode(TokenBuilder.BuildLiteralToken((char)index));
-            literal.Accept(this);             
+            literal.Accept(this);
         }
 
         public void Visit(NotNode node)
@@ -152,7 +150,7 @@ namespace RegularExpressionDataGenerator
             {
                 return item.Token.Character;
             }
-        }       
+        }
 
     }
 

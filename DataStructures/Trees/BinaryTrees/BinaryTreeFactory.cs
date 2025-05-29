@@ -1,7 +1,5 @@
 ﻿using DataStructures.Trees.Interfaces;
-using DataStructures.Trees.Nodes;
 using System;
-using System.Collections.Generic;
 
 namespace DataStructures.Trees.BinaryTrees
 {

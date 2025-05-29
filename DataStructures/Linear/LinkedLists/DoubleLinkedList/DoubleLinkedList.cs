@@ -57,7 +57,7 @@ namespace DataStructures.Linear.LinkedLists.DoubleLinkedList
         }
 
         public void Remove()
-        {            
+        {
             _tail = _tail.PrevNode;
             _tail.UnlinkNextNode();
             Count--;
@@ -70,7 +70,7 @@ namespace DataStructures.Linear.LinkedLists.DoubleLinkedList
             DoubleLinkedNode<T> parent = toDelete.PrevNode as DoubleLinkedNode<T>;
             if (index == 0) _root = toDelete.NextNode;
             if (index == Count - 1) _tail = parent;
-            if (parent != null) parent.LinkNextNode(toDelete.NextNode );
+            if (parent != null) parent.LinkNextNode(toDelete.NextNode);
             if (toDelete.PrevNode != null) toDelete.PrevNode.LinkPrevNode(parent);
             Count--;
         }

@@ -1,6 +1,5 @@
 ﻿//using Algorithms.Hashes;
 using DataStructures.Linear.LinkedLists.SingleLinkedList.Nodes;
-using DataStructures.Tables;
 using System;
 using System.Collections.Generic;
 
@@ -55,7 +54,7 @@ namespace DataStructures.Tables.HashTable
             catch (IndexOutOfRangeException)
             {
                 node = default;
-            }                
+            }
 
             if (node is null)
             {

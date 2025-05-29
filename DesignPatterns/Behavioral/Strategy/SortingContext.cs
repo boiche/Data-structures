@@ -23,7 +23,7 @@ namespace DesignPatterns.Behavioral.Strategy
         {
             Console.WriteLine($"Before sorting with {_sorting.GetType().Name}: {string.Join(", ", source)}");
             _sorting.Sort(source);
-            Console.WriteLine($"After sorting with {_sorting.GetType().Name}: {string.Join(", ", source)}");            
-        }       
+            Console.WriteLine($"After sorting with {_sorting.GetType().Name}: {string.Join(", ", source)}");
+        }
     }
 }

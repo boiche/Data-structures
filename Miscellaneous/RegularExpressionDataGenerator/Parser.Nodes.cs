@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace RegularExpressionDataGenerator
+﻿namespace RegularExpressionDataGenerator
 {
     public abstract class NodeBase : INode
     {
@@ -22,7 +20,8 @@ namespace RegularExpressionDataGenerator
     {
 
         public LiteralNode(LiteralToken token) :
-            base(token) {}
+            base(token)
+        { }
 
         public new LiteralToken Token
         {
@@ -51,7 +50,8 @@ namespace RegularExpressionDataGenerator
     public class RepetitionNode : NodeBase
     {
         public RepetitionNode(RepetitionToken token) :
-            base(token){}
+            base(token)
+        { }
 
         public new RepetitionToken Token
         {
@@ -80,7 +80,8 @@ namespace RegularExpressionDataGenerator
     public class ParenthesisNode : NodeBase
     {
         public ParenthesisNode(ParenthesisRightToken token) :
-            base(token) {}
+            base(token)
+        { }
 
         public override NodeType NodeType
         {
@@ -96,12 +97,13 @@ namespace RegularExpressionDataGenerator
         {
             visitor.Visit(this);
         }
-     }
+    }
 
     public class ConcatenationNode : NodeBase
     {
         public ConcatenationNode(ConcatenationToken token) :
-            base(token) {}
+            base(token)
+        { }
 
         public override NodeType NodeType
         {

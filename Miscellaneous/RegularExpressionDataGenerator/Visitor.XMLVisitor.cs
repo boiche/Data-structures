@@ -1,8 +1,7 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
 namespace RegularExpressionDataGenerator
-{  
+{
     public class XmlVisitor : IVisitor
     {
         readonly string _lr = Environment.NewLine;

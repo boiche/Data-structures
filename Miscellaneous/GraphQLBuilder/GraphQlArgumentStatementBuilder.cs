@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Text;
+﻿using System.Text;
 
 namespace Itel.Framework.DAL.GraphQL.SA.Builders
 {
@@ -25,7 +24,7 @@ namespace Itel.Framework.DAL.GraphQL.SA.Builders
         {
             Init();
 
-            if (_whereClause == null) 
+            if (_whereClause == null)
                 _whereClause = new WhereStatementBuilder(ref _clauseBuilder);
 
             if (_clauseBuilder.Length > 1)

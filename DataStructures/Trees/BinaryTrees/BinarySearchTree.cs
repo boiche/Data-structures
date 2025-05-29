@@ -12,7 +12,7 @@ namespace DataStructures.Trees.BinaryTrees
         public BinarySearchTree(List<T> source, TreeOptions options) : base(source, options)
         {
             this._source = source.OrderBy(x => x).ToList();
-            BuildTree();    
+            BuildTree();
             SetTraversor();
             Count = source.Count;
         }
@@ -114,7 +114,7 @@ namespace DataStructures.Trees.BinaryTrees
         public override void Remove(T item)
         {
             if (current == null) current = Root;
-            if (item == null) 
+            if (item == null)
                 return;
 
             if (current.Value.CompareTo(item) > 0) //move to the left

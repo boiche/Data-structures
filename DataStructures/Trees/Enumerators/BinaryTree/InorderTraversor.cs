@@ -17,7 +17,7 @@ namespace DataStructures.Recursive.Enumerators.BinaryTree
 
         public T Current => _current.Value;
         public IBinaryTreeNode<T> CurrentNode => _current;
-        object IEnumerator.Current => _current;        
+        object IEnumerator.Current => _current;
 
         public InorderTraversor(IBinaryTreeNode<T> root)
         {

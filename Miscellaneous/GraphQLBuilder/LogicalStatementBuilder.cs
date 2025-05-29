@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace Itel.Framework.DAL.GraphQL.SA.Builders
+﻿namespace Itel.Framework.DAL.GraphQL.SA.Builders
 {
     /// <summary>
     /// Builds boolean relation between where statements for GraphQL queries

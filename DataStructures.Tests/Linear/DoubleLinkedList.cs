@@ -37,7 +37,7 @@ namespace DataStructures.Tests.Linear
         public void InsertNodeThrowsException()
         {
             Assert.ThrowsException<IndexOutOfRangeException>(() => emptyList.InsertNode(2, 1));
-            Assert.ThrowsException<IndexOutOfRangeException>(() => populatedList.InsertNode(10, 7));            
+            Assert.ThrowsException<IndexOutOfRangeException>(() => populatedList.InsertNode(10, 7));
         }
 
         [TestMethod]
@@ -61,7 +61,7 @@ namespace DataStructures.Tests.Linear
         [TestMethod]
         public void RemoveNodeThrowsException()
         {
-            Assert.ThrowsException<NullReferenceException>(() => emptyList.Remove());            
+            Assert.ThrowsException<NullReferenceException>(() => emptyList.Remove());
         }
     }
 }

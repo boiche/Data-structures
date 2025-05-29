@@ -21,7 +21,7 @@ namespace Sandbox.Decorator.Drawers
                 {
                     Console.WriteLine(new string('*', width));
                 }
-                else 
+                else
                 {
                     Console.Write('*');
                     Console.Write(new string(' ', width - 2));

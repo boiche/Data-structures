@@ -34,12 +34,12 @@ namespace RegularExpressionDataGenerator
         public TokenType TokenType { get { return TokenType.Alternation; } }
     }
 
-    public struct BracketLeftToken : IToken 
+    public struct BracketLeftToken : IToken
     {
         public TokenType TokenType { get { return TokenType.BracketLeft; } }
     }
 
-    public struct BracketRightToken : IToken 
+    public struct BracketRightToken : IToken
     {
         public TokenType TokenType { get { return TokenType.BracketRight; } }
     }

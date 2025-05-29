@@ -27,7 +27,7 @@ namespace DataStructures.Graphs.Interfaces
             if (!Nodes.Contains(destination.Value))
                 Nodes.Add(destination);
 
-            Nodes[source.Value].Children.Add(destination.Value);            
+            Nodes[source.Value].Children.Add(destination.Value);
         }
 
         public override string ToString()

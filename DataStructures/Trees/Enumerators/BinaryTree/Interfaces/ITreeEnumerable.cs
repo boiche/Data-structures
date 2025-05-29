@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace DataStructures.Trees.Enumerators.BinaryTree.Interfaces
+﻿namespace DataStructures.Trees.Enumerators.BinaryTree.Interfaces
 {
     public interface ITreeEnumerable<T>
     {

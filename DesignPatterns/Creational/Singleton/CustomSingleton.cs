@@ -5,8 +5,8 @@
         private static CustomSingleton _instance;
         private static readonly object _lockObject = new();
         private CustomSingleton() { }
-        public static CustomSingleton Instance 
-        { 
+        public static CustomSingleton Instance
+        {
             get
             {
                 if (_instance == null)

@@ -10,7 +10,7 @@ namespace DataStructures.Trees.Interfaces
 {
     public abstract class BaseBinaryTree<T> : BaseTree<T>, IBinaryTreeEnumerable<T>
     {
-        protected BaseBinaryTree(IEnumerable<T> source, TreeOptions options) : base(source) 
+        protected BaseBinaryTree(IEnumerable<T> source, TreeOptions options) : base(source)
         {
             this.options = options;
         }
@@ -21,13 +21,48 @@ namespace DataStructures.Trees.Interfaces
         protected IBinaryTreeNode<T> previous;
         protected IBinaryTreeNode<T> root;
         public new IBinaryTreeNode<T> Root { get => root; }
-        public abstract IBinaryTreeNode<T> Find(T item);        
+        public abstract IBinaryTreeNode<T> Find(T item);
 
+        /// <summary>
+        /// Builds the tree based on the given source treated as level order representation 
+        /// </summary>
         protected void BuildTree()
         {
-            
-        }
+            BinaryTreeNode<T> treeNode;
+            IEnumerator<T> enumerator = _source.GetEnumerator();
+            if (!enumerator.MoveNext())
+            {
+                treeNode = new BinaryTreeNode<T>(default);
+                root = treeNode;
+                return;
+            }
 
+            Queue<BinaryTreeNode<T>> queue = new();
+            queue.Enqueue(new BinaryTreeNode<T>(enumerator.Current));
+
+            while (queue.Count > 0)
+            {
+                var current = queue.Dequeue();
+
+                if (root == null)
+                    root = current;
+
+                BinaryTreeNode<T> left = null, right = null;
+                if (enumerator.MoveNext())
+                {
+                    left = new BinaryTreeNode<T>(enumerator.Current);
+                    queue.Enqueue(left);
+                }
+                if (enumerator.MoveNext())
+                {
+                    right = new BinaryTreeNode<T>(enumerator.Current);
+                    queue.Enqueue(right);
+                }
+
+                current.LeftNode = left;
+                current.RightNode = right;
+            }
+        }
         /// <summary>
         /// Finds the smallest item from given node as a root of subtree.
         /// </summary>
@@ -116,7 +151,10 @@ namespace DataStructures.Trees.Interfaces
                     break;
             }
         }
-
+        /// <summary>
+        /// Returns an enumerator that iterates through the tree
+        /// </summary>
+        /// <returns>An enumerator that can be used to iterate through the tree</returns>
         public new IBinaryTreeEnumerator<T> GetEnumerator()
         {
             return _traversor;

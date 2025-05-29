@@ -1,7 +1,7 @@
 ﻿namespace Algorithms.Hashes
 {
     public static class HashFunctions
-    {        
+    {
         /// <summary>
         /// Basic hash function with primes as base
         /// </summary>

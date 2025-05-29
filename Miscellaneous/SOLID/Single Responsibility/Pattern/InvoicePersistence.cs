@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Miscellaneous.SOLID.Single_Responsibility.Pattern
+﻿namespace Miscellaneous.SOLID.Single_Responsibility.Pattern
 {
     internal class InvoicePersistence
     {

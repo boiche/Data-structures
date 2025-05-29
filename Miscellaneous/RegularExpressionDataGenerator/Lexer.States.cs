@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RegularExpressionDataGenerator
+﻿namespace RegularExpressionDataGenerator
 {
     internal class LiteralState : IState
     {
@@ -166,9 +164,9 @@ namespace RegularExpressionDataGenerator
                     return TokenBuilder.BuildRepetitionToken(_minOccurs, _maxOccurs);
                 default:
                     var result = 0;
-                    if(int.TryParse(character.ToString(), out result))
+                    if (int.TryParse(character.ToString(), out result))
                     {
-                        _currentNumber = _currentNumber*10 + result;
+                        _currentNumber = _currentNumber * 10 + result;
                         _isParsingFirstValue = false;
                     }
                     else

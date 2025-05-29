@@ -1,11 +1,7 @@
-﻿using Algorithms.Sort;
-using DesignPatterns.Behavioral.Strategy;
+﻿using DesignPatterns.Behavioral.Strategy;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DesignPatterns.Tests.Behavioral.Strategy
 {

@@ -40,7 +40,7 @@ namespace DataStructures.Tests.Trees
         [TestMethod]
         public void Find_CloseWords_WorksCorrectly()
         {
-            string shouldFind =         "thisvalueissomewhatlong";
+            string shouldFind = "thisvalueissomewhatlong";
             string shouldFindShrinked = "thisvalueis";
 
             trie.Insert(shouldFind);

@@ -17,7 +17,7 @@ namespace DataStructures.Trees.Enumerators.Tree
 
         public T Current => _current.Value;
         public ITreeNode<T> CurrentNode => _current;
-        object IEnumerator.Current => Current;        
+        object IEnumerator.Current => Current;
 
         public PostorderTraversor(ITreeNode<T> root)
         {

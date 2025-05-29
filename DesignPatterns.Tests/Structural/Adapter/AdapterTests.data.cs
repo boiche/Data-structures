@@ -13,7 +13,7 @@ namespace DesignPatterns.Tests.Structural.Adapter
             "Operation",
             "Permutation"
         };
-        static List<string> queueData = 
+        static List<string> queueData =
         [
             "Audi",
             "Saab",

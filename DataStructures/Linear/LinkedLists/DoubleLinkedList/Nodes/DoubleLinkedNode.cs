@@ -7,7 +7,7 @@
         public DoubleLinkedNode<T> PrevNode { get; private set; }
 
         public DoubleLinkedNode(T value, DoubleLinkedNode<T> next = null, DoubleLinkedNode<T> prev = null)
-        {            
+        {
             Value = value;
             NextNode = next;
             PrevNode = prev;

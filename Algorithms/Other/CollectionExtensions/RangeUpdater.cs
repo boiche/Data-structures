@@ -4,9 +4,9 @@ using System.Numerics;
 namespace Algorithms.Other.CollectionExtensions
 {
     public static partial class CollectionExtensions
-    {        
+    {
         public enum Operation
-        { 
+        {
             Addition,
             Substraction
         }
@@ -18,7 +18,7 @@ namespace Algorithms.Other.CollectionExtensions
         /// <param name="start">Inclusive</param>
         /// <param name="end">Inclusive</param>
         /// <param name="value"></param>
-        public static void UpdateRange<T>(this IList<T> source, int start, int end, T value, Operation operation) where T : IAdditionOperators<T, T, T>, ISubtractionOperators<T,T,T>
+        public static void UpdateRange<T>(this IList<T> source, int start, int end, T value, Operation operation) where T : IAdditionOperators<T, T, T>, ISubtractionOperators<T, T, T>
         {
             T[] differenceArray = new T[source.Count + 1];
             differenceArray[0] = source[0];

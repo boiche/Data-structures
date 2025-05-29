@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DataStructures.Linear
 {
-    public  class Stack<T>
+    public class Stack<T>
     {
         private T[] elements;
         private int index = 0;
@@ -49,7 +47,7 @@ namespace DataStructures.Linear
         {
             return elements[index - 1];
         }
-        
+
         private void ResizeStack()
         {
             T[] newElements;

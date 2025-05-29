@@ -26,7 +26,7 @@ namespace DataStructures.Linear
         {
             elements = new T[capacity];
         }
-        public Queue(int capacity,int newGFactor)
+        public Queue(int capacity, int newGFactor)
         {
             elements = new T[capacity];
             growthFactor = newGFactor;
@@ -87,7 +87,7 @@ namespace DataStructures.Linear
             this.index--;
             return item;
         }
-        
+
         public T Peek()
         {
             return elements[0];

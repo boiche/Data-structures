@@ -17,14 +17,14 @@ namespace Algorithms.Search
 
             T temp;
             int comparison;
-            
+
             while (_left <= _right)
             {
                 _middle = (_left + _right) / 2;
                 temp = ordered[_middle];
                 comparison = temp.CompareTo(find);
                 if (comparison > 0) //'find' is smaller                
-                    _right  = _middle - 1;
+                    _right = _middle - 1;
                 else if (comparison < 0) //'find' is greater
                     _left = _middle + 1;
                 else

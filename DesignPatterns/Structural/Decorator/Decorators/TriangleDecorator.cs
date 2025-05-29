@@ -1,6 +1,5 @@
 ﻿using DesignPatterns.Structural.Decorator.Drawers;
 using Sandbox.Decorator.Decorators;
-using Sandbox.Decorator.Drawers;
 using Sandbox.Decorator.Shapes;
 using System.Drawing;
 

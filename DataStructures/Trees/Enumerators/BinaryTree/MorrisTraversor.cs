@@ -17,7 +17,7 @@ namespace DataStructures.Trees.Enumerators.BinaryTree
 
         public T Current => _current.Value;
         public IBinaryTreeNode<T> CurrentNode => _current;
-        object IEnumerator.Current => _current;        
+        object IEnumerator.Current => _current;
 
         public MorrisTraversor(IBinaryTreeNode<T> root)
         {

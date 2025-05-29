@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace Miscellaneous.Unsafe_code
+﻿namespace Miscellaneous.Unsafe_code
 {
     public unsafe class LinkedList_Unsafe
     {

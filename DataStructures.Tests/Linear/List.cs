@@ -7,7 +7,7 @@ namespace DataStructures.Tests.Linear
     {
         private static readonly int[] data = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         public List<int> emptyList = new List<int>();
-        public List<int> populatedList = new List<int>(data);        
+        public List<int> populatedList = new List<int>(data);
 
         [TestMethod]
         public void AddItemWorksCorrectly()
@@ -21,7 +21,7 @@ namespace DataStructures.Tests.Linear
         {
             for (int i = 0; i < 15; i++)
             {
-                emptyList.Add(i);                
+                emptyList.Add(i);
             }
 
             Assert.AreEqual(15, emptyList.Count);

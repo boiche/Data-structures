@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace RegularExpressionDataGenerator
+﻿namespace RegularExpressionDataGenerator
 {
     public class Parser
     {

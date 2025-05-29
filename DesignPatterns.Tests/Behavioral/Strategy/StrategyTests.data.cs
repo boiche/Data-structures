@@ -1,9 +1,6 @@
 ﻿using Algorithms.Sort;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DesignPatterns.Tests.Behavioral.Strategy
 {
@@ -73,12 +70,12 @@ namespace DesignPatterns.Tests.Behavioral.Strategy
         };
         IList<string> _sortedStrings = new List<string>()
         {
-            string.Empty, 
-            "  ensured", 
-            "_sort it", 
-            "hellot", 
-            "sort_it", 
-            "wHaT", 
+            string.Empty,
+            "  ensured",
+            "_sort it",
+            "hellot",
+            "sort_it",
+            "wHaT",
             "WhAt"
         };
 

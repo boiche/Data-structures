@@ -23,7 +23,7 @@ namespace Algorithms.Graphs
             cols = source[0].Length;
 
             result = new int[rows * cols];
-           
+
             bool[,] visited = new bool[rows, cols];
 
             return DFS_Recursive(new(0, 0), source, visited);
@@ -91,8 +91,8 @@ namespace Algorithms.Graphs
             }
 
             return result;
-        }        
-        
+        }
+
         private static int[] DFS_Recursive(MatrixIndex current, int[][] source, bool[,] visited)
         {
             if (!IsInBounds(source, current) || visited[current.row, current.col])
@@ -102,7 +102,7 @@ namespace Algorithms.Graphs
             SortedList<int, MatrixIndex> neighbours = new();
 
             for (int i = 0; i < directions.Length; i++)
-            {                
+            {
                 MatrixIndex next = new(current.row + directions[i].row, current.col + directions[i].col);
                 if (IsInBounds(source, next) && !visited[next.row, next.col])
                     neighbours.Add(source[next.row][next.col], next);

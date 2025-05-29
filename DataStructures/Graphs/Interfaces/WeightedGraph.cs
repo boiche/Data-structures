@@ -51,6 +51,6 @@ namespace DataStructures.Graphs.Interfaces
         public override string ToString()
         {
             return $"Nodes = {Nodes.Count}";
-        }        
+        }
     }
 }

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DesignPatterns.Behavioral.State
 {
@@ -37,12 +34,14 @@ namespace DesignPatterns.Behavioral.State
                 case Type when _stateType == typeof(FuncDefinition):
                     {
                         //creates runtime type that represents the function (use System.Reflection.Emit builders to accomplish)
-                    } break;
+                    }
+                    break;
                 case Type when _stateType == typeof(FuncExecution):
                     {
-                       _state.Execute();
-                    } break;
-                default: 
+                        _state.Execute();
+                    }
+                    break;
+                default:
                     throw new NotSupportedException();
             }
         }

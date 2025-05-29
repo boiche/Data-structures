@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace RegularExpressionDataGenerator
+﻿namespace RegularExpressionDataGenerator
 {
     public enum TokenType
     {
@@ -11,8 +9,8 @@ namespace RegularExpressionDataGenerator
         Concatenation,
         Alternation,
         BracketLeft,
-        BracketRight, 
-        Range, 
+        BracketRight,
+        Range,
         Not,
         Any,
         Numeric,

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Miscellaneous.ChangeTracker
+﻿namespace Miscellaneous.ChangeTracker
 {
     /// <summary>
     /// Used as change storage. Manages tracking logic
@@ -30,7 +26,7 @@ namespace Miscellaneous.ChangeTracker
         /// <exception cref="ArgumentException"></exception>
         internal static bool TrackChange(TrackableEntity entity, string propertyName, object oldValue, object newValue)
         {
-            if (string.IsNullOrEmpty(propertyName)) 
+            if (string.IsNullOrEmpty(propertyName))
                 throw new ArgumentException($"{nameof(propertyName)} cannot be null or empty");
 
             var property = entity.GetType().GetProperty(propertyName) ?? throw new AggregateException($"{propertyName} is not known property of {entity.GetType().Name}");
@@ -109,7 +105,7 @@ namespace Miscellaneous.ChangeTracker
     /// </summary>
     internal class ChangeDictionary : Dictionary<TrackableEntity, ChangeCollection>
     {
-        public new ChangeCollection this[TrackableEntity key] 
+        public new ChangeCollection this[TrackableEntity key]
         {
             get
             {
@@ -127,7 +123,7 @@ namespace Miscellaneous.ChangeTracker
         public new void Add(TrackableEntity key, ChangeCollection value)
         {
             if (!ContainsKey(key))
-                base.Add(key, value);            
+                base.Add(key, value);
         }
     }
 }

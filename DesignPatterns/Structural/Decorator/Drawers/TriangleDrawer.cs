@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Sandbox.Decorator.Drawers;
+using System;
 using System.Drawing;
-using Sandbox.Decorator.Drawers;
 
 namespace DesignPatterns.Structural.Decorator.Drawers
 {

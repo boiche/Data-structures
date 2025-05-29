@@ -1,11 +1,5 @@
-﻿using DataStructures.Linear.LinkedLists.SingleLinkedList.Nodes;
-using DataStructures.Trees;
+﻿using DataStructures.Trees;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataStructures.Tests.Trees.Factories
 {
@@ -16,7 +10,7 @@ namespace DataStructures.Tests.Trees.Factories
         public void FromAdjacencyArray_WorksCorrectly()
         {
             int[][] values = [[8, 3], [3, 1], [3, 6], [6, 4], [6, 7]];
-            
+
             var result = TreeFactory<int>.FromAdjacencyArray(values);
 
             Assert.AreEqual(6, result.Count);

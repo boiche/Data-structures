@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Algorithms.Sort
 {
@@ -13,7 +10,7 @@ namespace Algorithms.Sort
             SortMain(source, 0, source.Count - 1);
         }
 
-        private void SortMain(IList<T> source, int left, int right) 
+        private void SortMain(IList<T> source, int left, int right)
         {
             if (left < right)
             {
@@ -56,7 +53,7 @@ namespace Algorithms.Sort
                     source[startIndex] = leftArray[indexLeftArray];
                     indexLeftArray++;
                 }
-                else 
+                else
                 {
                     source[startIndex] = rightArray[indexRightArray];
                     indexRightArray++;

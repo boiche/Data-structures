@@ -31,7 +31,7 @@ namespace RegularExpressionDataGenerator
             var numeric = BuildNumericNode();
             var uppercase = BuildRangeNode(TokenBuilder.BuildLiteralToken((char)65), TokenBuilder.BuildLiteralToken((char)90));
             var lowercase = BuildRangeNode(TokenBuilder.BuildLiteralToken((char)97), TokenBuilder.BuildLiteralToken((char)122));
-            var underscore = BuildLiteralNode(TokenBuilder.BuildLiteralToken((char) 95));
+            var underscore = BuildLiteralNode(TokenBuilder.BuildLiteralToken((char)95));
             var set = new BracketNode(new BracketRightToken());
             set.ChildNodes.Add(numeric);
             set.ChildNodes.Add(uppercase);
@@ -69,7 +69,7 @@ namespace RegularExpressionDataGenerator
             var numeric = BuildNumericNode();
             var not = new NotNode(new NotToken());
             not.ChildNodes.Add(numeric);
-            
+
             return not;
         }
 

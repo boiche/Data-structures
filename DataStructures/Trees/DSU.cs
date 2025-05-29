@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.Design;
-using DataStructures.Graphs.Interfaces;
-using DataStructures.Trees.Interfaces;
-using DataStructures.Trees.Nodes.Interfaces;
+﻿using DataStructures.Trees.Interfaces;
+using System.Collections.Generic;
 
 namespace DataStructures.Trees
 {

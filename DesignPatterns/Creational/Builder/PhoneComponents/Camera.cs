@@ -4,6 +4,6 @@
     {
         public string Model { get; set; }
         public byte Resolution { get; set; }
-        public string Brand { get; set; } 
+        public string Brand { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace DesignPatterns.Creational.FactoryMethod.Static
             return new TrainTravel();
         };
         private static Func<object, ITravel> _planeTravelFactoryMethod = (args) =>
-        { 
+        {
             //do some stuff with args
             return new PlaneTravel();
         };

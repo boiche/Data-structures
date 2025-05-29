@@ -13,7 +13,7 @@ namespace DataStructures.Graphs
     /// <typeparam name="V">Type of node's value</typeparam>
     public class DirectedAcyclicGraph<T, V> : BaseGraph<T, V> where T : INode<V>
     {
-        private new Dictionary<V, INode<V>> _source;        
+        private new Dictionary<V, INode<V>> _source;
         public INode<V> this[V node]
         {
             get { return _source[node]; }
@@ -29,7 +29,7 @@ namespace DataStructures.Graphs
         /// </summary>
         /// <param name="node"></param>
         /// <exception cref="InvalidOperationException"></exception>
-        public new void CreateNode(V nodeValue)
+        public void CreateNode(V nodeValue)
         {
             ArgumentNullException.ThrowIfNull(nodeValue);
 
@@ -70,10 +70,8 @@ namespace DataStructures.Graphs
             try
             {
                 value.Children.Add(newNode.Value);
-                if (!_source.TryAdd(newNode.Value, new Node<V>(newNode.Value)))
-                    CreateNode(newNode);
-                else
-                    Nodes.Add(newNode); //TODO: either make CreateNode bool or make TryAdd create the new node into the Nodes collection (new node is not inserted in the Nodes collection)
+                if (_source.TryAdd(newNode.Value, new Node<V>(newNode.Value)))
+                    Nodes.Add(newNode);
 
                 TopologicalSort();
             }
@@ -104,7 +102,7 @@ namespace DataStructures.Graphs
 
             try
             {
-                value.Children.Add(newNodeValue);                
+                value.Children.Add(newNodeValue);
                 if (_source.TryAdd(newNodeValue, newNode))
                     Nodes.Add(newNode);
 
@@ -154,7 +152,7 @@ namespace DataStructures.Graphs
             }
 
             if (result.Count != Nodes.Count)
-                throw new InvalidOperationException("Cycle detected");
+                throw new Exception("Cycle detected");
 
             return result;
         }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace DataStructures.Trees.Nodes
 {
@@ -9,7 +8,7 @@ namespace DataStructures.Trees.Nodes
         /// <summary>
         /// Stores the count of how many words terminate at current node
         /// </summary> 
-        public TrieNode() : base(0) 
+        public TrieNode() : base(0)
         {
             Children = new();
         }

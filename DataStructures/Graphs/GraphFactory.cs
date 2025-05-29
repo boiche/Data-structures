@@ -26,7 +26,7 @@ namespace DataStructures.Graphs
         public static IGraph<T, V> FromAdjacencyList(SingleLinkedList<T> values)
         {
             throw new NotImplementedException();
-        }        
+        }
     }
 
     public static class WeightedGraphFactory<T, V> where T : INode<V>

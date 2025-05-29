@@ -24,7 +24,7 @@ namespace Algorithms.Tests.Search
         {
             DateTime.Now, DateTime.Today, DateTime.MinValue, DateTime.MaxValue, DateTime.UnixEpoch
         }.OrderBy(x => x).ToArray();
-        
+
         [TestMethod]
         public void FibonacciSearch_FindsFirst()
         {

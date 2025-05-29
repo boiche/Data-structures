@@ -1,6 +1,6 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DesignPatterns.Creational.Builder;
 using DesignPatterns.Creational.Builder.PhoneBuilders.Interfaces;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DesignPatterns.Tests.Creational
 {

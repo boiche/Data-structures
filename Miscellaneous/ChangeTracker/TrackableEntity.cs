@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Text;
 
 namespace Miscellaneous.ChangeTracker
@@ -34,7 +32,7 @@ namespace Miscellaneous.ChangeTracker
         public List<Change> GetChanges()
         {
             var changes = TrackedResult.changes[this].Where(x => x.IsChanged).ToList();
-            
+
             var nestedChanges = GetChildren(this).SelectMany(x => TrackedResult.changes[x].Where(y => y.IsChanged)).ToList();
 
             return changes.Concat(nestedChanges).ToList();
@@ -47,7 +45,7 @@ namespace Miscellaneous.ChangeTracker
         {
             State = EntityState.Added;
 
-            TrackedResult.changes.Add(this, new ChangeCollection());           
+            TrackedResult.changes.Add(this, new ChangeCollection());
         }
 
         /// <summary>
@@ -58,8 +56,8 @@ namespace Miscellaneous.ChangeTracker
             if (TrackedResult.TrackChange(this, propertyName, oldValue, newValue))
                 if (this.State != EntityState.Added)
                     this.State = EntityState.Modified;
-            else if (TrackedResult.changes[this].Count == 0)
-                this.State = EntityState.Unchanged;
+                else if (TrackedResult.changes[this].Count == 0)
+                    this.State = EntityState.Unchanged;
         }
 
         /// <summary>
@@ -165,8 +163,8 @@ namespace Miscellaneous.ChangeTracker
             => TrackedResult.changes.Where(x => x.Key.State == EntityState.Added && x.Key.GetType() == typeof(T)).Select(x => x.Key).Cast<T>().ToList();
 
         public static int TotalChanges
-        { 
-            get => TrackedResult.changes.Count; 
+        {
+            get => TrackedResult.changes.Count;
         }
         public static int TotalAdditions
         {

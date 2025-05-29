@@ -1,12 +1,10 @@
-﻿using System;
-using System.Text;
-using DataStructures.Linear;
+﻿using DataStructures.Linear;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DataStructures.Tests.Linear
 {
     [TestClass]
-    
+
     public class Stack
     {
         public Stack<int> emptyStack = new Stack<int>();

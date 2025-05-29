@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace RegularExpressionDataGenerator
+﻿namespace RegularExpressionDataGenerator
 {
     public class ParseState
     {
@@ -32,14 +29,14 @@ namespace RegularExpressionDataGenerator
                 case TokenType.Alternation:
                     var alternation = (AlternationToken)token;
                     INode alternationNode = new AlternationNode(alternation);
-                    AddOperator(alternationNode);                  
+                    AddOperator(alternationNode);
                     break;
-                case TokenType.Range: 
+                case TokenType.Range:
                     var range = (RangeToken)token;
                     INode rangeNode = new RangeNode(range);
                     AddOperator(rangeNode);
                     break;
-                case TokenType.BracketLeft: 
+                case TokenType.BracketLeft:
                     context.ToState(new ParseState());
                     break;
                 case TokenType.BracketRight:
@@ -92,11 +89,11 @@ namespace RegularExpressionDataGenerator
             }
         }
 
-//        Word - \w
-//Whitespace - \s
-//NotDigit? - \D
-//NotWord? - \W
-//NotWhitespace? - \S
+        //        Word - \w
+        //Whitespace - \s
+        //NotDigit? - \D
+        //NotWord? - \W
+        //NotWhitespace? - \S
 
         private readonly Stack<INode> _operators = new Stack<INode>();
         private readonly Stack<INode> _operands = new Stack<INode>();
@@ -152,7 +149,7 @@ namespace RegularExpressionDataGenerator
         private bool IsBalanced()
         {
             var binaryOperatorsCount = _operators.Count(operatorNode => operatorNode.NodeType == NodeType.BinaryOperator);
-            
+
             return binaryOperatorsCount == _operands.Count;
         }
 

@@ -9,8 +9,8 @@ namespace DesignPatterns.Creational.DependencyInjection
     public class Client
     {
         private IService _service;
-        public IService Service 
-        { 
+        public IService Service
+        {
             get
             {
                 if (_service is null)

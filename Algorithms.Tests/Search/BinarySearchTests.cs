@@ -29,7 +29,7 @@ namespace Algorithms.Tests.Search
         {
             int result = BinarySearch.Search(_stringSource, _stringSource[3]);
             Assert.AreEqual(3, result);
-            
+
             result = BinarySearch.Search(_intSource, _intSource[2]);
             Assert.AreEqual(2, result);
 

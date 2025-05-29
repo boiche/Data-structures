@@ -24,7 +24,7 @@ namespace DataStructures.Tests
         {
             hashTable.Put(1, new Point(1, 1));
             Assert.AreEqual(1, hashTable.GetValue(1).X);
-            Assert.AreEqual(1, hashTable.GetValue(1).Y);           
+            Assert.AreEqual(1, hashTable.GetValue(1).Y);
         }
 
         public void RemoveNodeThrowsException()

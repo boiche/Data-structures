@@ -33,7 +33,7 @@ namespace DataStructures.Tests.Trees
             BinaryTree<int> tree = new();
 
             tree.AddComponent(1);
-            
+
             tree.Remove(2);
             Assert.AreEqual(1, tree.Count);
 

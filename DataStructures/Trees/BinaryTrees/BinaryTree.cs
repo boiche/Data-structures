@@ -8,8 +8,8 @@ namespace DataStructures.Trees.BinaryTrees
 {
     public class BinaryTree<T> : BaseBinaryTree<T>
     {
-        public BinaryTree() : this(null, new TreeOptions()) { }        
-        public BinaryTree(List<T> source) : this(source, new TreeOptions()) { }        
+        public BinaryTree() : this(null, new TreeOptions()) { }
+        public BinaryTree(List<T> source) : this(source, new TreeOptions()) { }
         public BinaryTree(List<T> source, TreeOptions options) : base(source, options)
         {
             if (source != null && source.Count > 0)
@@ -18,7 +18,7 @@ namespace DataStructures.Trees.BinaryTrees
                 SetTraversor();
                 Count = source.Count;
             }
-        }        
+        }
 
         /// <summary>
         /// Searches for specific item in the binary tree.
@@ -37,16 +37,16 @@ namespace DataStructures.Trees.BinaryTrees
 
             return null;
         }
-        
+
         public override void AddComponent(T item)
         {
             throw new NotImplementedException(); // create new component (should extend base trees to support components) 
         }
-        
+
         public override void Remove(T value)
         {
-            if (value == null || Count == 0) 
-                return;                            
+            if (value == null || Count == 0)
+                return;
             if (Count == 1)
             {
                 if (value.Equals(Root.Value))

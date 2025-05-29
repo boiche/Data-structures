@@ -17,7 +17,7 @@ namespace DataStructures.Recursive.Enumerators.BinaryTree
 
         public T Current => _current.Value;
         public IBinaryTreeNode<T> CurrentNode => _current;
-        object IEnumerator.Current => Current;        
+        object IEnumerator.Current => Current;
 
         public LevelOrderTraversor(IBinaryTreeNode<T> root)
         {
@@ -50,7 +50,7 @@ namespace DataStructures.Recursive.Enumerators.BinaryTree
                     _queue.Enqueue(current.RightNode);
                 }
             }
-        }        
+        }
 
         public void Dispose()
         {

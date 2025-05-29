@@ -72,8 +72,8 @@ namespace RowVersions
                             break;
                         }
                     case TypeCode.String:
-                        {                                
-                            builder.Append($"{current.Name} nvarchar(100) NULL"); 
+                        {
+                            builder.Append($"{current.Name} nvarchar(100) NULL");
                             break;
                         }
                     case TypeCode.DateTime:
@@ -108,7 +108,7 @@ namespace RowVersions
             }
             if (builder.Length == 0)
             {
-                throw new InvalidOperationException($"{nameof(T)} contains no properties that can be matched with any SQL types. No table definition was created.");                
+                throw new InvalidOperationException($"{nameof(T)} contains no properties that can be matched with any SQL types. No table definition was created.");
             }
 
             return builder.ToString();
