@@ -1,7 +1,6 @@
 ﻿using DataStructures.Graphs;
 using DataStructures.Graphs.Nodes;
 using DataStructures.Graphs.Nodes.Interfaces;
-using Microsoft.ApplicationInsights.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
@@ -58,7 +57,7 @@ namespace DataStructures.Tests.Graphs
 
             var topoSort = graph.TopologicalSort();
             Assert.IsTrue(topoSort.SequenceEqual([4, 5, 6, 2, 3, 1]));
-        
+
         }
 
         [TestMethod]
@@ -83,7 +82,7 @@ namespace DataStructures.Tests.Graphs
             graph.CreateNode(0);
             graph.CreateNode(1);
 
-            graph.LinkNode(0, 1);            
+            graph.LinkNode(0, 1);
 
             Assert.ThrowsException<InvalidOperationException>(() => graph.LinkNode(1, 0));
         }

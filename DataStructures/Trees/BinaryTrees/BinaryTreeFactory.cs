@@ -18,43 +18,9 @@ namespace DataStructures.Trees.BinaryTrees
         public static BaseBinaryTree<T> FromLevelOrder(T?[] values)
         {
             ArgumentNullException.ThrowIfNull(values);
-            BinaryTree<T> result = new();
-            throw new NotImplementedException();
 
-            //BinaryTreeNode<T> treeNode;
-            //IEnumerator<T> enumerator = _source.GetEnumerator();
-            //if (!enumerator.MoveNext())
-            //{
-            //    treeNode = new BinaryTreeNode<T>(default);
-            //    root = treeNode;
-            //    return;
-            //}
-
-            //Queue<BinaryTreeNode<T>> queue = new();
-            //queue.Enqueue(new BinaryTreeNode<T>(enumerator.Current));
-
-            //while (queue.Count > 0)
-            //{
-            //    var current = queue.Dequeue();
-
-            //    if (root == null)
-            //        root = current;
-
-            //    BinaryTreeNode<T> left = null, right = null;
-            //    if (enumerator.MoveNext())
-            //    {
-            //        left = new BinaryTreeNode<T>(enumerator.Current);
-            //        queue.Enqueue(left);
-            //    }
-            //    if (enumerator.MoveNext())
-            //    {
-            //        right = new BinaryTreeNode<T>(enumerator.Current);
-            //        queue.Enqueue(right);
-            //    }
-
-            //    current.LeftNode = left;
-            //    current.RightNode = right;
-            //}
+            BinaryTree<T> result = new([.. values]);
+            return result;
         }
 #nullable disable
     }

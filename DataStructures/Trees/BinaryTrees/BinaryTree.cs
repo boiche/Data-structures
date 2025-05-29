@@ -16,7 +16,6 @@ namespace DataStructures.Trees.BinaryTrees
             {
                 BuildTree();
                 SetTraversor();
-                Count = source.Count;
             }
         }
 

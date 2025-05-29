@@ -45,18 +45,29 @@ namespace DataStructures.Trees.Interfaces
                 var current = queue.Dequeue();
 
                 if (root == null)
+                {
                     root = current;
+                    Count++;
+                }
 
                 BinaryTreeNode<T> left = null, right = null;
                 if (enumerator.MoveNext())
                 {
-                    left = new BinaryTreeNode<T>(enumerator.Current);
-                    queue.Enqueue(left);
+                    if (enumerator.Current != null)
+                    {
+                        left = new BinaryTreeNode<T>(enumerator.Current);
+                        Count++;
+                        queue.Enqueue(left);
+                    }
                 }
                 if (enumerator.MoveNext())
                 {
-                    right = new BinaryTreeNode<T>(enumerator.Current);
-                    queue.Enqueue(right);
+                    if (enumerator.Current != null)
+                    {
+                        right = new BinaryTreeNode<T>(enumerator.Current);
+                        Count++;
+                        queue.Enqueue(right);
+                    }
                 }
 
                 current.LeftNode = left;

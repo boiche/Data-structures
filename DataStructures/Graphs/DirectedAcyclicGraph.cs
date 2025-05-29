@@ -9,8 +9,8 @@ namespace DataStructures.Graphs
     /// <summary>
     /// Graph that supports single direction between nodes and no cycles
     /// </summary>
-    /// <typeparam name="T">Type of node</typeparam>
-    /// <typeparam name="V">Type of node's value</typeparam>
+    /// <typeparam name="T">Node's type</typeparam>
+    /// <typeparam name="V">Node's value type</typeparam>
     public class DirectedAcyclicGraph<T, V> : BaseGraph<T, V> where T : INode<V>
     {
         private new Dictionary<V, INode<V>> _source;
@@ -29,7 +29,7 @@ namespace DataStructures.Graphs
         /// </summary>
         /// <param name="node"></param>
         /// <exception cref="InvalidOperationException"></exception>
-        public void CreateNode(V nodeValue)
+        public new void CreateNode(V nodeValue)
         {
             ArgumentNullException.ThrowIfNull(nodeValue);
 
@@ -152,7 +152,7 @@ namespace DataStructures.Graphs
             }
 
             if (result.Count != Nodes.Count)
-                throw new Exception("Cycle detected");
+                throw new InvalidOperationException("Cycle detected");
 
             return result;
         }
