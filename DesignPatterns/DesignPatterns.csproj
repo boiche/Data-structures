@@ -14,20 +14,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Structural\Bridge\**" />
-    <Compile Remove="Structural\Facade\**" />
-    <Compile Remove="Structural\Proxy\**" />
-    <EmbeddedResource Remove="Structural\Bridge\**" />
-    <EmbeddedResource Remove="Structural\Facade\**" />
-    <EmbeddedResource Remove="Structural\Proxy\**" />
-    <None Remove="Structural\Bridge\**" />
-    <None Remove="Structural\Facade\**" />
-    <None Remove="Structural\Proxy\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Behavioral\Iterator\" />
     <Folder Include="Behavioral\Mediator\" />
+    <Folder Include="Behavioral\Chain of Responsibility\" />
+    <Folder Include="Behavioral\Command\" />
+    <Folder Include="Behavioral\Memento\" />
+    <Folder Include="Behavioral\Visitor\" />
+    <Folder Include="Behavioral\Template Method\" />
+    <Folder Include="Structural\Composite\" />
+    <Folder Include="Structural\Facade\" />
+    <Folder Include="Structural\Flyweight\" />
+    <Folder Include="Structural\Proxy\" />
   </ItemGroup>
 
   <ItemGroup>
