@@ -1,7 +1,7 @@
 ﻿using DesignPatterns.Structural.Bridge.Gateways;
 using System;
 
-namespace DesignPatterns.Structural.Bridge
+namespace DesignPatterns.Structural.Bridge.PaymentMethods
 {
     public class CreditCardPayment : PaymentMethod
     {
