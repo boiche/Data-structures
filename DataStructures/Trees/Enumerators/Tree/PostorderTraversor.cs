@@ -6,7 +6,7 @@ using System.Collections;
 namespace DataStructures.Trees.Enumerators.Tree
 {
     /// <summary>
-    /// Implementation of Postorder traversal <c>(Children-Root)</c>. Applicable for <see cref="ITreeNode{T}"/>
+    /// Implementation of Postorder traversal <c>(Children-Root)</c>. Applicable for <see cref="ITreeNodeChildren{T}"/>
     /// </summary>
     /// <typeparam name="T"></typeparam>
     internal class PostorderTraversor<T> : ITreeEnumerator<T>

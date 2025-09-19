@@ -133,7 +133,7 @@ namespace DataStructures.Trees
             }
         }
 
-        public override void AddComponent(T item)
+        public override void Add(T item)
         {
             Assign(item, item);
         }

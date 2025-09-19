@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// A node with identification. 
-    /// Applicable for graphs. Not suggested for use of trees. Use instead <see cref="Trees.Nodes.Interfaces.ITreeNode{T}"/>
+    /// Applicable for graphs. Not suggested for use of trees. Use instead <see cref="Trees.Nodes.Interfaces.ITreeNodeChildren{T}"/>
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface IIdentifiedNode<T> : INode<T>

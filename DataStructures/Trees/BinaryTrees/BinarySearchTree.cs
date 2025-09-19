@@ -13,7 +13,7 @@ namespace DataStructures.Trees.BinaryTrees
         {
             this._source = source.OrderBy(x => x).ToList();
             BuildTree();
-            SetTraversor();
+            BuildTraversor();
             Count = source.Count;
         }
 
@@ -59,11 +59,7 @@ namespace DataStructures.Trees.BinaryTrees
             }
         }
 
-        /// <summary>
-        /// Add new item to the tree.
-        /// </summary>
-        /// <param name="item"></param>
-        public void Add(T item)
+        public override void Add(T item)
         {
             if (Root == null)
             {
@@ -104,11 +100,6 @@ namespace DataStructures.Trees.BinaryTrees
             {
                 throw new InvalidOperationException($"{nameof(BinarySearchTree<T>)} doesn't allow duplicates.");
             }
-        }
-
-        public override void AddComponent(T item)
-        {
-            throw new NotImplementedException();
         }
 
         public override void Remove(T item)

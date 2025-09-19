@@ -1,4 +1,5 @@
-﻿using DataStructures.Trees.Interfaces;
+﻿#pragma warning disable CS0809
+using DataStructures.Trees.Interfaces;
 using DataStructures.Trees.Nodes;
 using System;
 using System.Collections.Generic;
@@ -131,15 +132,20 @@ namespace DataStructures.Trees
         /// Appends single character to the root of the tree. <para>Character should be passed as int</para>
         /// </summary>
         /// <param name="item"></param>
-        public override void AddComponent(int item)
+        public override void Add(int item)
         {
             if (!_root.Children.ContainsKey((char)item))
                 _root.Children.Add((char)item, new() { Value = 1 });
         }
 
+        /// <summary>
+        /// Attempts to remove the root of the Trie, passed as casted <see cref="char"/> to <see cref="int"/>
+        /// </summary>
+        /// <param name="item"></param>
+        [Obsolete("Dangerous method. Can errase the whole tree.")]
         public override void Remove(int item)
         {
-            throw new NotImplementedException();
+            Remove(((char)item).ToString());
         }
     }
 }

@@ -5,7 +5,7 @@ namespace DesignPatterns.Structural.Bridge.PaymentMethods
 {
     public class BankTransferPayment : PaymentMethod
     {
-        public BankTransferPayment(IPaymentGateway gateway) : base(gateway) { }        
+        public BankTransferPayment(IPaymentGateway gateway) : base(gateway) { }
         public override void Pay(decimal amount, string currency)
         {
             Console.WriteLine("Bank transfer payment");

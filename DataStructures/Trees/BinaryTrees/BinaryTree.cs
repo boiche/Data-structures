@@ -1,8 +1,8 @@
 ﻿using DataStructures.Linear;
+using DataStructures.Recursive.Enumerators.BinaryTree;
 using DataStructures.Trees.Interfaces;
 using DataStructures.Trees.Nodes;
 using DataStructures.Trees.Nodes.Interfaces;
-using System;
 
 namespace DataStructures.Trees.BinaryTrees
 {
@@ -10,14 +10,7 @@ namespace DataStructures.Trees.BinaryTrees
     {
         public BinaryTree() : this(null, new TreeOptions()) { }
         public BinaryTree(List<T> source) : this(source, new TreeOptions()) { }
-        public BinaryTree(List<T> source, TreeOptions options) : base(source, options)
-        {
-            if (source != null && source.Count > 0)
-            {
-                BuildTree();
-                SetTraversor();
-            }
-        }
+        public BinaryTree(List<T> source, TreeOptions options) : base(source, options) { }
 
         /// <summary>
         /// Searches for specific item in the binary tree.
@@ -36,12 +29,32 @@ namespace DataStructures.Trees.BinaryTrees
 
             return null;
         }
-
-        public override void AddComponent(T item)
+        public override void Add(T item)
         {
-            throw new NotImplementedException(); // create new component (should extend base trees to support components) 
-        }
+            // TODO: store the last element to avoid iterating the tree on every Add()
+            var enumerator = new PreorderTraversor<T>(root);
+            IBinaryTreeNode<T> lastNode = enumerator.CurrentNode;
+            while (enumerator.MoveNext())
+            {
+                lastNode = enumerator.CurrentNode;
+            }
 
+            if (lastNode is not null)
+            {
+                if (lastNode.LeftNode is null)
+                    lastNode.LeftNode = new BinaryTreeNode<T>(item);
+                else
+                    lastNode.RightNode = new BinaryTreeNode<T>(item);
+            }
+            else
+            {
+                root = new BinaryTreeNode<T>(item);
+            }
+
+            BuildTraversor();
+
+            Count++;
+        }
         public override void Remove(T value)
         {
             if (value == null || Count == 0)

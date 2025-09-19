@@ -7,6 +7,6 @@
         /// </summary>
         /// <param name="amount"></param>
         /// <param name="currency"></param>
-        void ProcessPayment(decimal amount, string currency);        
+        void ProcessPayment(decimal amount, string currency);
     }
 }

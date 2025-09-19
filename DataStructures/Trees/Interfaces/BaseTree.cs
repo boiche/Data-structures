@@ -24,7 +24,7 @@ namespace DataStructures.Trees.Interfaces
             protected set
             {
                 _root = value;
-                SetTraversor();
+                BuildTraversor();
             }
         }
         /// <summary>
@@ -49,12 +49,11 @@ namespace DataStructures.Trees.Interfaces
             while (enumerator.MoveNext())
                 Count++;
         }
-
         /// <summary>
-        /// Creates new component (separate tree) with root <paramref name="item"/> to the structure
+        /// Adds new item to the tree.
         /// </summary>
         /// <param name="item"></param>
-        public abstract void AddComponent(T item);
+        public abstract void Add(T node);
         /// <summary>
         /// Removes all occurances of nodes with <paramref name="value"/>
         /// </summary>
@@ -65,7 +64,7 @@ namespace DataStructures.Trees.Interfaces
         {
             return _traversor;
         }
-        protected virtual void SetTraversor()
+        protected virtual void BuildTraversor()
         {
             _traversor = new PreorderTraversor<T>(Root);
         }

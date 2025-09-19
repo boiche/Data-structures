@@ -18,10 +18,10 @@ namespace DataStructures.Recursive.Enumerators.BinaryTree
         public T Current => _current.Value;
         public IBinaryTreeNode<T> CurrentNode => _current;
         object IEnumerator.Current => _current;
+        public bool Ended => _queue.Count == 0;
 
         public InorderTraversor(IBinaryTreeNode<T> root)
         {
-            ArgumentNullException.ThrowIfNull(root);
             _root = root;
             _queue = new();
             CreateQueue(root);

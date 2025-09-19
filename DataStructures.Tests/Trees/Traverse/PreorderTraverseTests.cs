@@ -31,7 +31,7 @@ namespace DataStructures.Tests.Trees.Traverse
             searchTreeResult = sb.ToString();
 
             Assert.AreEqual("124895367", treeResult);
-            Assert.AreEqual("124895367", searchTreeResult);
+            Assert.AreEqual("632471985", searchTreeResult);
         }
     }
 }

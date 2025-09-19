@@ -12,7 +12,20 @@ namespace DataStructures.Trees.Interfaces
     {
         protected BaseBinaryTree(IEnumerable<T> source, TreeOptions options) : base(source)
         {
-            this.options = options;
+            if (options is null)
+            {
+                this.options = new TreeOptions()
+                {
+                    Traverse = Traverse.Preorder
+                };
+            }
+            else
+                this.options = options;
+
+            if (source != null)
+                BuildTree();
+
+            BuildTraversor();
         }
 
         protected TreeOptions options;
@@ -141,7 +154,7 @@ namespace DataStructures.Trees.Interfaces
 
             return 1 + Math.Max(GetHeight(node.LeftNode), GetHeight(node.RightNode));
         }
-        protected override void SetTraversor()
+        protected override void BuildTraversor()
         {
             switch (options.Traverse)
             {
@@ -168,6 +181,7 @@ namespace DataStructures.Trees.Interfaces
         /// <returns>An enumerator that can be used to iterate through the tree</returns>
         public new IBinaryTreeEnumerator<T> GetEnumerator()
         {
+            BuildTraversor();
             return _traversor;
         }
     }
