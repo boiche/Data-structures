@@ -133,6 +133,11 @@ namespace DataStructures.Trees
             }
         }
 
+        /// <summary>
+        /// Assigns given item to the self set
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="key"></param>
         public override void Add(T item)
         {
             Assign(item, item);

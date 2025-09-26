@@ -9,10 +9,6 @@ namespace DesignPatterns.Structural.Composite.Tags
         public ParagraphTag() : base("p") { }
         public override ICollection<IHtmlTag> Children => null;
         public override string Content { get; set; }
-        public void Accept(IHtmlTagVisitor visitor)
-        {
-            visitor.Visit(this);
-        }
         public override string ToString()
         {
             return $"<{_header}>{Content}</{_header}>";

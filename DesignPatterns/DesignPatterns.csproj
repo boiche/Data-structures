@@ -17,7 +17,6 @@
     <Folder Include="Behavioral\Iterator\" />
     <Folder Include="Behavioral\Mediator\" />
     <Folder Include="Behavioral\Chain of Responsibility\" />
-    <Folder Include="Behavioral\Command\" />
     <Folder Include="Behavioral\Memento\" />
     <Folder Include="Behavioral\Template Method\" />
     <Folder Include="Structural\Facade\" />
