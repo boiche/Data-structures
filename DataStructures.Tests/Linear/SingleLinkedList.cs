@@ -52,7 +52,7 @@ namespace DataStructures.Tests.Linear
         public void InsertMultipleNodesWorksCorrectly()
         {
             int[] expected = { 1, 2, 3, 4, 5, 6, 7 };
-            list = SingleLinkedListFactory<int>.GetListFromArray(new int[] { 1, 2, 3, 5, 7 }); // insert 4 and 6
+            list = SingleLinkedListFactory<int>.GetListFromArray([1, 2, 3, 5, 7]); // insert 4 and 6
             list.InsertNode(4, 3);
             list.InsertNode(6, 5);
             for (int i = 0; i < expected.Length; i++) Assert.AreEqual(expected[i], list.GetValueAt(i));
@@ -62,7 +62,7 @@ namespace DataStructures.Tests.Linear
         public void InsertTailWorksCorrectly()
         {
             int[] expected = { 1, 2, 3, 4, 5, 6, 7 };
-            list = SingleLinkedListFactory<int>.GetListFromArray(new int[] { 1, 2, 3, 4, 5, 6 });
+            list = SingleLinkedListFactory<int>.GetListFromArray([1, 2, 3, 4, 5, 6]);
             list.InsertNode(7, 6);
             for (int i = 0; i < expected.Length; i++) Assert.AreEqual(expected[i], list.GetValueAt(i));
         }
@@ -70,7 +70,7 @@ namespace DataStructures.Tests.Linear
         [TestMethod]
         public void FindAtWorksCorrectly()
         {
-            list = SingleLinkedListFactory<int>.GetListFromArray(new int[] { 1, 2, 3, 4, 5 });
+            list = SingleLinkedListFactory<int>.GetListFromArray([1, 2, 3, 4, 5]);
             int result = list.GetValueAt(3);
             Assert.AreEqual(4, result);
         }
@@ -78,7 +78,7 @@ namespace DataStructures.Tests.Linear
         [TestMethod]
         public void FindAtThrowsException()
         {
-            list = SingleLinkedListFactory<int>.GetListFromArray(new int[] { 1, 2, 3, 4, 5 });
+            list = SingleLinkedListFactory<int>.GetListFromArray([1, 2, 3, 4, 5]);
             Assert.ThrowsException<IndexOutOfRangeException>(() => { list.FindAt(-1); });
             Assert.ThrowsException<IndexOutOfRangeException>(() => { list.FindAt(10); });
         }
@@ -96,7 +96,7 @@ namespace DataStructures.Tests.Linear
         [TestMethod]
         public void RemoveNodeWorksCorrectly()
         {
-            list = SingleLinkedListFactory<int>.GetListFromArray(new int[] { 1, 2, 3, 4, 5 });
+            list = SingleLinkedListFactory<int>.GetListFromArray([1, 2, 3, 4, 5]);
             list.Remove();
             Assert.AreEqual(4, list.Count);
             Assert.AreEqual(4, list.Last());
@@ -108,7 +108,7 @@ namespace DataStructures.Tests.Linear
         [TestMethod]
         public void RemoveAtThrowsException()
         {
-            list = SingleLinkedListFactory<int>.GetListFromArray(new int[] { 1, 2, 3, 4, 5, 6 });
+            list = SingleLinkedListFactory<int>.GetListFromArray([1, 2, 3, 4, 5, 6]);
             Assert.ThrowsException<IndexOutOfRangeException>(() => { list.RemoveAt(-1); });
             Assert.ThrowsException<IndexOutOfRangeException>(() => list.RemoveAt(10));
             list.Clear();
@@ -118,8 +118,8 @@ namespace DataStructures.Tests.Linear
         [TestMethod]
         public void RemoveAtWorksCorrectly()
         {
-            int[] expected = new int[] { 1, 2, 4, 5, 6 };
-            list = SingleLinkedListFactory<int>.GetListFromArray(new int[] { 1, 2, 3, 4, 5, 6 });
+            int[] expected = [1, 2, 4, 5, 6];
+            list = SingleLinkedListFactory<int>.GetListFromArray([1, 2, 3, 4, 5, 6]);
             list.RemoveAt(2);
             for (int i = 0; i < expected.Length; i++) Assert.AreEqual(expected[i], list.GetValueAt(i));
         }
