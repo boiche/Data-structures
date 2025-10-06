@@ -7,8 +7,9 @@ namespace DataStructures.Tests.Linear
     public class Queue
     {
         public Queue<int> emptyQueue = new Queue<int>();
-        public Queue<int> populatedQueue = new Queue<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+        public Queue<int> populatedQueue = new Queue<int>(arr);
         public Queue<int> growthFactorQueue = new Queue<int>(5, 4);
+        private static readonly int[] arr = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
         [TestMethod]
         public void EnqueueItemToQueue()

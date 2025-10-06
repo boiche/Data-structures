@@ -1,11 +1,6 @@
-﻿using DesignPatterns.Behavioral.Visitor;
-using DesignPatterns.Structural.Composite.Tags;
+﻿using DesignPatterns.Structural.Composite.Tags;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DesignPatterns.Tests.Structural.Composite
 {

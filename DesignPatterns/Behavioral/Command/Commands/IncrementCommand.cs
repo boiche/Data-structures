@@ -1,16 +1,24 @@
 ﻿namespace DesignPatterns.Behavioral.Command.Commands
 {
-    public class IncrementCommand<T> : ICommand<T> where T : unmanaged
+    public class IncrementCommand<T> : BaseCommand<T>, ICommand
     {
-        private readonly IIncrementable<T> receiver;
+        private readonly T _arg;
 
-        public IncrementCommand(IIncrementable<T> receiver)
+        public IncrementCommand(IIncrementable<T> receiver, T arg) : base(receiver)
         {
-            this.receiver = receiver;
+            this._arg = arg;
         }
-        public void Execute(T arg)
+
+
+        public void Execute()
         {
-            receiver.Increment(arg);            
+            _receiver.Increment(_arg);
+        }
+
+        public void Undo()
+        {
+            var undoCommand = new DecrementCommand<T>(_receiver, _arg);
+            undoCommand.Execute();
         }
     }
 }
