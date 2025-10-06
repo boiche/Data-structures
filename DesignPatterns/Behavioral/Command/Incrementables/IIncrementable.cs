@@ -1,4 +1,4 @@
-﻿namespace DesignPatterns.Behavioral.Command.Commands
+﻿namespace DesignPatterns.Behavioral.Command.Incrementables
 {
     public interface IIncrementable<T>
     {

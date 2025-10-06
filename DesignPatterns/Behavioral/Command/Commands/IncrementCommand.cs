@@ -1,4 +1,6 @@
-﻿namespace DesignPatterns.Behavioral.Command.Commands
+﻿using DesignPatterns.Behavioral.Command.Incrementables;
+
+namespace DesignPatterns.Behavioral.Command.Commands
 {
     public class IncrementCommand<T> : BaseCommand<T>, ICommand
     {

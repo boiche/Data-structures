@@ -1,6 +1,4 @@
-﻿using DesignPatterns.Behavioral.Command.Commands;
-
-namespace DesignPatterns.Behavioral.Command.Incrementables
+﻿namespace DesignPatterns.Behavioral.Command.Incrementables
 {
     public class DecimalIncrementable : IIncrementable<decimal>
     {
