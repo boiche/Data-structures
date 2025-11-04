@@ -1,11 +1,13 @@
-﻿namespace DesignPatterns.Creational.Singleton
+﻿using System;
+
+namespace DesignPatterns.Creational.Singleton
 {
-    public class CustomSingleton
+    public class CustomSingleton<T> where T : new()
     {
-        private static CustomSingleton _instance;
+        private static T _instance;
         private static readonly object _lockObject = new();
         private CustomSingleton() { }
-        public static CustomSingleton Instance
+        public static T Instance
         {
             get
             {
@@ -15,7 +17,7 @@
                     {
                         if (_instance == null)
                         {
-                            _instance = new CustomSingleton();
+                            _instance = (T)typeof(T).GetConstructor(Type.EmptyTypes).Invoke(null);
                         }
                     }
                 }

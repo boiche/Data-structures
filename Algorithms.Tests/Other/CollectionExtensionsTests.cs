@@ -30,5 +30,15 @@ namespace Algorithms.Tests.Other
 
             Assert.IsTrue(source.SequenceEqual(expected));
         }
+
+        [TestMethod]
+        public void PrefixSum_WorksCorrectly()
+        {
+            int[] source = [6, 5, 4, 9, 13, 6, -2];
+            int[] expected = [6, 11, 15, 24, 37, 43, 41];
+
+            var result = source.ToPrefixSum();
+            Assert.IsTrue(result.SequenceEqual(expected));
+        }
     }
 }
