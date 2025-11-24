@@ -5,7 +5,7 @@ namespace DesignPatterns.Tests.Structural.Adapter
 {
     public partial class AdapterTests
     {
-        ICollection<string> _list = new List<string>()
+        List<string> _list = new List<string>()
         {
             "Madness",
             "Crowds",
@@ -34,7 +34,7 @@ namespace DesignPatterns.Tests.Structural.Adapter
 
         IEnumerable<string> _stack = new Stack<string>(stackData);
 
-        Dictionary<Guid, string> _dictionary = new Dictionary<Guid, string>()
+        System.Collections.Generic.Dictionary<Guid, string> _dictionary = new System.Collections.Generic.Dictionary<Guid, string>()
         {
             { Guid.NewGuid(), "David" },
             { Guid.NewGuid(), "Lewis" },

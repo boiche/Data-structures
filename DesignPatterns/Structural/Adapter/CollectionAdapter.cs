@@ -1,7 +1,7 @@
 ﻿using RegularExpressionDataGenerator;
 using System;
-using System.Collections.Generic;
 using System.Reflection;
+using System.Collections.Generic;
 
 namespace DesignPatterns.Structural.Adapter
 {
@@ -42,9 +42,9 @@ namespace DesignPatterns.Structural.Adapter
 
             return stack;
         }
-        public static Dictionary<T, V> GetDictionaryWithValues<T, V>(this IEnumerable<V> collection)
+        public static System.Collections.Generic.Dictionary<T, V> GetDictionaryWithValues<T, V>(this IEnumerable<V> collection)
         {
-            Dictionary<T, V> dictionary = new Dictionary<T, V>();
+            System.Collections.Generic.Dictionary<T, V> dictionary = new System.Collections.Generic.Dictionary<T, V>();
 
             var enumerator = collection.GetEnumerator();
             bool isUnmanaged = typeof(T).IsUnmanaged();
@@ -59,9 +59,9 @@ namespace DesignPatterns.Structural.Adapter
 
             return dictionary;
         }
-        public static Dictionary<T, V> GetDictionaryWithKeys<T, V>(this IEnumerable<T> collection)
+        public static System.Collections.Generic.Dictionary<T, V> GetDictionaryWithKeys<T, V>(this IEnumerable<T> collection)
         {
-            Dictionary<T, V> dictionary = new Dictionary<T, V>();
+            System.Collections.Generic.Dictionary<T, V> dictionary = new System.Collections.Generic.Dictionary<T, V>();
 
             var enumerator = collection.GetEnumerator();
 
